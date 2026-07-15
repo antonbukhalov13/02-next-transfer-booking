@@ -1,22 +1,52 @@
 "use client";
 
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
 import { bookingSchema, type BookingFormValues } from "@/lib/validation";
+
+type FormState = "idle" | "submitting" | "success" | "error";
 
 function FieldError({ message }: { message?: string }) {
   if (!message) return null;
   return <p className="mt-1 text-sm text-red-600">{message}</p>;
 }
 
+function Spinner() {
+  return (
+    <svg
+      className="h-5 w-5 animate-spin"
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden="true"
+    >
+      <circle
+        className="opacity-25"
+        cx="12"
+        cy="12"
+        r="10"
+        stroke="currentColor"
+        strokeWidth="4"
+      />
+      <path
+        className="opacity-75"
+        fill="currentColor"
+        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+      />
+    </svg>
+  );
+}
+
 export default function BookingForm() {
   const t = useTranslations("booking");
   const tValidation = useTranslations("validation");
+  const [formState, setFormState] = useState<FormState>("idle");
 
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<BookingFormValues>({
     resolver: zodResolver(bookingSchema),
@@ -37,18 +67,69 @@ export default function BookingForm() {
     },
   });
 
+  function onSubmit() {
+    setFormState("submitting");
+    setTimeout(() => {
+      setFormState("success");
+      reset();
+    }, 1000);
+  }
+
+  function handleDismiss() {
+    setFormState("idle");
+  }
+
   const fieldClass =
     "w-full rounded-lg border border-neutral-300 bg-white px-4 py-3 text-neutral-900 placeholder-neutral-400 transition-colors focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-200";
   const labelClass = "block text-sm font-medium text-neutral-700 mb-1";
   const errorBorderClass = "border-red-500 focus:border-red-500 focus:ring-red-200";
+  const isSubmitting = formState === "submitting";
+
+  if (formState === "success") {
+    return (
+      <div className="rounded-2xl border border-green-200 bg-green-50 p-8 text-center shadow-sm">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          className="mx-auto mb-4 h-12 w-12 text-green-600"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+          />
+        </svg>
+        <h2 className="mb-2 text-xl font-semibold text-green-900">
+          {t("states.success")}
+        </h2>
+        <p className="mb-6 text-green-700">{t("states.successMessage")}</p>
+        <button
+          type="button"
+          onClick={handleDismiss}
+          className="rounded-xl bg-green-600 px-6 py-3 font-semibold text-white transition-all hover:bg-green-700"
+        >
+          {t("form.submit")}
+        </button>
+      </div>
+    );
+  }
 
   return (
     <form
-      onSubmit={handleSubmit(() => {})}
+      onSubmit={handleSubmit(onSubmit)}
       noValidate
       className="space-y-6 rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm sm:p-8"
     >
-      <fieldset className="space-y-4">
+      {formState === "error" && (
+        <div className="rounded-lg border border-red-200 bg-red-50 p-4 text-red-800" role="alert">
+          <p className="font-medium">{t("states.error")}</p>
+          <p className="text-sm">{t("states.errorMessage")}</p>
+        </div>
+      )}
+
+      <fieldset className="space-y-4" disabled={isSubmitting}>
         <legend className="text-lg font-semibold text-primary-900">
           {t("title")}
         </legend>
@@ -67,7 +148,12 @@ export default function BookingForm() {
               {...register("firstName")}
               className={`${fieldClass} ${errors.firstName ? errorBorderClass : ""}`}
             />
-            <FieldError message={errors.firstName?.message && tValidation(errors.firstName.message as "required")} />
+            <FieldError
+              message={
+                errors.firstName?.message &&
+                tValidation(errors.firstName.message as "required")
+              }
+            />
           </div>
 
           <div>
@@ -83,7 +169,12 @@ export default function BookingForm() {
               {...register("lastName")}
               className={`${fieldClass} ${errors.lastName ? errorBorderClass : ""}`}
             />
-            <FieldError message={errors.lastName?.message && tValidation(errors.lastName.message as "required")} />
+            <FieldError
+              message={
+                errors.lastName?.message &&
+                tValidation(errors.lastName.message as "required")
+              }
+            />
           </div>
         </div>
 
@@ -114,7 +205,12 @@ export default function BookingForm() {
               {...register("phone")}
               className={`${fieldClass} ${errors.phone ? errorBorderClass : ""}`}
             />
-            <FieldError message={errors.phone?.message && tValidation(errors.phone.message as "required")} />
+            <FieldError
+              message={
+                errors.phone?.message &&
+                tValidation(errors.phone.message as "required")
+              }
+            />
           </div>
 
           <div>
@@ -130,7 +226,14 @@ export default function BookingForm() {
               {...register("email")}
               className={`${fieldClass} ${errors.email ? errorBorderClass : ""}`}
             />
-            <FieldError message={errors.email?.message && tValidation(errors.email.message as "email" | "required")} />
+            <FieldError
+              message={
+                errors.email?.message &&
+                tValidation(
+                  errors.email.message as "email" | "required"
+                )
+              }
+            />
           </div>
         </div>
 
@@ -146,12 +249,23 @@ export default function BookingForm() {
             className={`${fieldClass} ${errors.serviceType ? errorBorderClass : ""}`}
           >
             <option value="">{t("form.serviceType")}</option>
-            <option value="airport">{t("form.serviceOptions.airport")}</option>
-            <option value="corporate">{t("form.serviceOptions.corporate")}</option>
+            <option value="airport">
+              {t("form.serviceOptions.airport")}
+            </option>
+            <option value="corporate">
+              {t("form.serviceOptions.corporate")}
+            </option>
             <option value="group">{t("form.serviceOptions.group")}</option>
-            <option value="private">{t("form.serviceOptions.private")}</option>
+            <option value="private">
+              {t("form.serviceOptions.private")}
+            </option>
           </select>
-          <FieldError message={errors.serviceType?.message && tValidation(errors.serviceType.message as "required")} />
+          <FieldError
+            message={
+              errors.serviceType?.message &&
+              tValidation(errors.serviceType.message as "required")
+            }
+          />
         </div>
 
         <div>
@@ -166,7 +280,12 @@ export default function BookingForm() {
             {...register("pickupAddress")}
             className={`${fieldClass} ${errors.pickupAddress ? errorBorderClass : ""}`}
           />
-          <FieldError message={errors.pickupAddress?.message && tValidation(errors.pickupAddress.message as "required")} />
+          <FieldError
+            message={
+              errors.pickupAddress?.message &&
+              tValidation(errors.pickupAddress.message as "required")
+            }
+          />
         </div>
 
         <div>
@@ -181,7 +300,12 @@ export default function BookingForm() {
             {...register("destination")}
             className={`${fieldClass} ${errors.destination ? errorBorderClass : ""}`}
           />
-          <FieldError message={errors.destination?.message && tValidation(errors.destination.message as "required")} />
+          <FieldError
+            message={
+              errors.destination?.message &&
+              tValidation(errors.destination.message as "required")
+            }
+          />
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2">
@@ -197,7 +321,12 @@ export default function BookingForm() {
               {...register("date")}
               className={`${fieldClass} ${errors.date ? errorBorderClass : ""}`}
             />
-            <FieldError message={errors.date?.message && tValidation(errors.date.message as "required")} />
+            <FieldError
+              message={
+                errors.date?.message &&
+                tValidation(errors.date.message as "required")
+              }
+            />
           </div>
 
           <div>
@@ -212,7 +341,12 @@ export default function BookingForm() {
               {...register("time")}
               className={`${fieldClass} ${errors.time ? errorBorderClass : ""}`}
             />
-            <FieldError message={errors.time?.message && tValidation(errors.time.message as "required")} />
+            <FieldError
+              message={
+                errors.time?.message &&
+                tValidation(errors.time.message as "required")
+              }
+            />
           </div>
         </div>
 
@@ -230,7 +364,12 @@ export default function BookingForm() {
               {...register("passengers", { valueAsNumber: true })}
               className={`${fieldClass} ${errors.passengers ? errorBorderClass : ""}`}
             />
-            <FieldError message={errors.passengers?.message && tValidation(errors.passengers.message as "minPassengers")} />
+            <FieldError
+              message={
+                errors.passengers?.message &&
+                tValidation(errors.passengers.message as "minPassengers")
+              }
+            />
           </div>
 
           <div>
@@ -242,19 +381,27 @@ export default function BookingForm() {
                 <input
                   type="radio"
                   value="true"
-                  {...register("airportMeetAndGreet", { setValueAs: (v) => v === "true" })}
+                  {...register("airportMeetAndGreet", {
+                    setValueAs: (v) => v === "true",
+                  })}
                   className="h-4 w-4 text-primary-600"
                 />
-                <span className="text-sm text-neutral-700">{t("form.meetGreetOptions.yes")}</span>
+                <span className="text-sm text-neutral-700">
+                  {t("form.meetGreetOptions.yes")}
+                </span>
               </label>
               <label className="flex items-center gap-2">
                 <input
                   type="radio"
                   value="false"
-                  {...register("airportMeetAndGreet", { setValueAs: (v) => v === "true" })}
+                  {...register("airportMeetAndGreet", {
+                    setValueAs: (v) => v === "true",
+                  })}
                   className="h-4 w-4 text-primary-600"
                 />
-                <span className="text-sm text-neutral-700">{t("form.meetGreetOptions.no")}</span>
+                <span className="text-sm text-neutral-700">
+                  {t("form.meetGreetOptions.no")}
+                </span>
               </label>
             </div>
           </div>
@@ -285,15 +432,22 @@ export default function BookingForm() {
               {t("form.consent")} *
             </span>
           </label>
-          <FieldError message={errors.consent?.message && tValidation(errors.consent.message as "consent")} />
+          <FieldError
+            message={
+              errors.consent?.message &&
+              tValidation(errors.consent.message as "consent")
+            }
+          />
         </div>
       </fieldset>
 
       <button
         type="submit"
-        className="w-full rounded-xl bg-primary-600 px-6 py-3.5 text-lg font-semibold text-white transition-all hover:bg-primary-700 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+        disabled={isSubmitting}
+        className="flex w-full items-center justify-center gap-2 rounded-xl bg-primary-600 px-6 py-3.5 text-lg font-semibold text-white transition-all hover:bg-primary-700 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
       >
-        {t("form.submit")}
+        {isSubmitting && <Spinner />}
+        {isSubmitting ? t("states.submitting") : t("form.submit")}
       </button>
     </form>
   );
