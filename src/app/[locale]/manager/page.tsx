@@ -6,10 +6,20 @@ type Props = { params: Promise<{ locale: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "manager" });
+  const t = await getTranslations({ locale, namespace: "seo.manager" });
   return {
     title: t("title"),
-    description: t("title"),
+    description: t("description"),
+    openGraph: {
+      title: t("title"),
+      description: t("description"),
+      locale,
+      siteName: "LONDON ROUTE TRANSFERS",
+      type: "website",
+    },
+    alternates: {
+      languages: { en: "/en/manager", ru: "/ru/manager" },
+    },
   };
 }
 

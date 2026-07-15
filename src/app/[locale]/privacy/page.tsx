@@ -5,10 +5,20 @@ type Props = { params: Promise<{ locale: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "legal.privacy" });
+  const t = await getTranslations({ locale, namespace: "seo.privacy" });
   return {
     title: t("title"),
-    description: t("sections.1.content"),
+    description: t("description"),
+    openGraph: {
+      title: t("title"),
+      description: t("description"),
+      locale,
+      siteName: "LONDON ROUTE TRANSFERS",
+      type: "website",
+    },
+    alternates: {
+      languages: { en: "/en/privacy", ru: "/ru/privacy" },
+    },
   };
 }
 
