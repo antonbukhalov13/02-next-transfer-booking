@@ -33,3 +33,21 @@ What I learned: zod v4 изменил API для z.literal — errorMap заме
 Model used: big-pickle
 
 Instrument used: OpenCode
+
+## Request 3
+
+Goal: настроить next-intl для мультиязычности (en/ru)
+
+Prompt: 1.2 — настройка next-intl
+
+Настрой next-intl для мультиязычности с локалями en (основная) и ru: i18n/routing.ts с defineRouting (locales: ['en', 'ru'], defaultLocale: 'en'), i18n/request.ts с getRequestConfig и загрузкой сообщений из messages/[locale].json, middleware.ts в корне src/ для роутинга по локали, обновление next.config для плагина next-intl. Перенеси текущий app/page.tsx и layout.tsx в сегмент app/[locale]/, чтобы все страницы были локализованы. На этом шаге создай пустые файлы messages/en.json и messages/ru.json с содержимым {} — наполнение будет отдельным шагом.
+
+Result: i18n/routing.ts оставлен без изменений (defineRouting с locales: ['en', 'ru'], defaultLocale: 'en'). i18n/request.ts оставлен без изменений (getRequestConfig с импортом ../messages/${locale}.json). Создан src/middleware.ts — createMiddleware(routing) с matcher ["/", "/(en|ru)/:path*"]. Обновлён next.config.ts — обёрнут с createNextIntlPlugin() из "next-intl/plugin". messages/en.json и messages/ru.json сброшены в {}. Сегмент [locale] уже был на месте с layout.tsx и page.tsx. `npm run build` и `npm run lint` проходят без ошибок. Next.js 16 показывает deprecation warning для middleware-конвенции (рекомендация proxy), но это не ошибка.
+
+Used as-is / edited manually / rejected: used as-is
+
+What I learned: в next-intl v4 (4.13.2) createMiddleware — default export, не именованный; Next.js 16 помечает middleware как deprecated (рекомендуется proxy), но работает; next-intl/plugin автоматически подключает request.ts через конфигурацию
+
+Model used: big-pickle
+
+Instrument used: OpenCode
