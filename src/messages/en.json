@@ -204,18 +204,48 @@
       }
     },
     "cookiePolicy": {
-      "title": "TODO",
+      "title": "Cookie Policy",
       "sections": {
-        "1": { "title": "TODO", "content": "TODO" },
-        "2": { "title": "TODO", "content": "TODO" },
-        "3": { "title": "TODO", "content": "TODO" },
-        "4": { "title": "TODO", "content": "TODO" },
-        "5": { "title": "TODO", "content": "TODO" },
-        "6": { "title": "TODO", "content": "TODO" },
-        "7": { "title": "TODO", "content": "TODO" },
-        "8": { "title": "TODO", "content": "TODO" },
-        "9": { "title": "TODO", "content": "TODO" },
-        "10": { "title": "TODO", "content": "TODO" }
+        "1": {
+          "title": "General Information",
+          "content": "This Cookie Policy explains how LONDON ROUTE TRANSFERS uses cookies and similar technologies on the website.\n\nThe use of cookies is regulated by:\n- UK GDPR;\n- Privacy and Electronic Communications Regulations, PECR."
+        },
+        "2": {
+          "title": "What Are Cookies",
+          "content": "Cookies are small text files stored on the user's device when visiting a website. They allow the website to recognise the user's device and remember certain information.\n\nCookies may be:\n- session cookies, deleted when the browser is closed;\n- persistent cookies, stored on the device for a defined period."
+        },
+        "3": {
+          "title": "What Cookies We Use",
+          "content": "Strictly necessary cookies are essential for the website to function correctly and do not require user consent. They are used to provide basic functionality, remember user choices, and ensure security.\n\nAnalytical cookies are used to analyse user behaviour and improve website performance. These cookies are only used with user consent.\n\nFunctional cookies allow the website to remember user preferences, such as language or interface settings. They are only used with consent, unless they are strictly necessary."
+        },
+        "4": {
+          "title": "Legal Basis for Using Cookies",
+          "content": "Strictly necessary cookies are used on the basis of legitimate interest. All other cookies are used exclusively on the basis of user consent."
+        },
+        "5": {
+          "title": "Obtaining Consent",
+          "content": "On the first visit to the website, a cookie banner is displayed, allowing the user to:\n- accept all cookies;\n- reject all optional cookies;\n- configure cookie categories.\n\nCookies other than strictly necessary ones are not set until consent is obtained."
+        },
+        "6": {
+          "title": "Managing Cookies",
+          "content": "The user may at any time:\n- change cookie settings via the website interface;\n- delete cookies via browser settings;\n- block cookies at the browser level.\n\nDisabling cookies may affect website functionality."
+        },
+        "7": {
+          "title": "Third-Party Cookies",
+          "content": "We may use third-party services, such as analytics tools, that set cookies on their own behalf.\n\nSuch third parties process data in accordance with their own privacy policies."
+        },
+        "8": {
+          "title": "Cookie Retention Period",
+          "content": "The retention period depends on the cookie type:\n- session cookies are deleted when the browser is closed;\n- persistent cookies are stored for a limited period or until deleted by the user."
+        },
+        "9": {
+          "title": "Policy Changes",
+          "content": "LONDON ROUTE TRANSFERS reserves the right to update this Policy at any time. The current version is always available on the website."
+        },
+        "10": {
+          "title": "Contact Information",
+          "content": "For enquiries related to the use of cookies, you may contact LONDON ROUTE TRANSFERS using the contact details provided on the website."
+        }
       }
     },
     "terms": {
