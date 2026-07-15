@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
+import FadeIn from "@/components/ui/FadeIn";
 import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
 import ServicesSummary from "@/components/sections/ServicesSummary";
@@ -30,9 +31,15 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <About />
-      <ServicesSummary />
-      <Advantages />
+      <FadeIn>
+        <About />
+      </FadeIn>
+      <FadeIn delay={100}>
+        <ServicesSummary />
+      </FadeIn>
+      <FadeIn delay={100}>
+        <Advantages />
+      </FadeIn>
     </>
   );
 }

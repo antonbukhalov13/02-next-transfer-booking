@@ -78,7 +78,7 @@ export default function BookingsList() {
           </button>
         </div>
       ) : (
-        <>
+        <div key={`${search}-${statusFilter}`} className="animate-fade-in-up">
           <div className="space-y-3 md:hidden">
             {filtered.map((booking) => (
               <div
@@ -199,7 +199,7 @@ export default function BookingsList() {
               </tbody>
             </table>
           </div>
-        </>
+        </div>
       )}
     </div>
   );

@@ -87,7 +87,7 @@ export default function BookingForm() {
 
   if (formState === "success") {
     return (
-      <div className="rounded-2xl border border-green-200 bg-green-50 p-8 text-center shadow-sm">
+      <div className="animate-fade-in-up rounded-2xl border border-green-200 bg-green-50 p-8 text-center shadow-sm">
         <svg
           viewBox="0 0 24 24"
           fill="none"
@@ -123,7 +123,7 @@ export default function BookingForm() {
       className="space-y-6 rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm sm:p-8"
     >
       {formState === "error" && (
-        <div className="rounded-lg border border-red-200 bg-red-50 p-4 text-red-800" role="alert">
+        <div className="animate-fade-in-up rounded-lg border border-red-200 bg-red-50 p-4 text-red-800" role="alert">
           <p className="font-medium">{t("states.error")}</p>
           <p className="text-sm">{t("states.errorMessage")}</p>
         </div>
