@@ -123,3 +123,21 @@ What I learned: ключи-заглушки в zod-схеме позволяют
 Model used: big-pickle
 
 Instrument used: OpenCode
+
+## Request 8
+
+Goal: создать скелет структуры ключей перевода для en/ru
+
+Prompt: 3 — скелет переводов messages/en.json и messages/ru.json
+
+Создай структуру ключей в messages/en.json и messages/ru.json (вложенный объект, идентичная структура в обоих файлах, но пока можно оставить значения плейсхолдерами вида "TODO"): секции hero, about, services (с подсекциями для каждого из 4+ типов поездок), advantages, booking (form-поля, validation-ошибки, states), manager (статусы, фильтры, empty state), legal (privacy, cookiePolicy, terms, transportTerms — заголовки разделов), footer, header/nav, common (кнопки, общие фразы). Финальный текст наполним на последующих шагах для каждой секции отдельно.
+
+Result: созданы messages/en.json и messages/ru.json с идентичной структурой ключей и плейсхолдерами "TODO". Секции: header (logo, nav с 6 ссылками), hero (title/subtitle/description/cta/note), about (title/subtitle/3 абзаца), services (title/subtitle, 4 типа поездок с title/description/features[], keyBenefits с items[]), advantages (title/subtitle/description, whoWeServe с 5 категориями, whyChooseUs с items[]), booking (title, form с 14 полями + serviceOptions + meetGreetOptions, privacy.text, states с 5 ключами), validation (4 ключа), manager (title, filters с 3 ключами, status с 4 статусами, emptyState с 3 ключами, columns с 7 заголовками), legal (4 документа с sections по 10-18 пунктов, title/content), footer (company info, documents, contacts, copyright), common (3 ключа), seo (8 страниц с title/description). `npm run build` и `npm run lint` проходят без ошибок.
+
+Used as-is / edited manually / rejected: used as-is
+
+What I learned: идентичная структура ключей в en/ru файлах — обязательное требование next-intl, любое расхождение вызовет ошибку рантайма; legal-секции с number-based sections (1-18) удобны для построчного заполнения из клиентского текста
+
+Model used: big-pickle
+
+Instrument used: OpenCode
