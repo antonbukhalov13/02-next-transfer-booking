@@ -217,23 +217,24 @@
   },
   "footer": {
     "companyName": "LONDON ROUTE TRANSFERS LTD",
-    "companyType": "TODO",
-    "companyNumber": "TODO",
-    "registeredOffice": "TODO",
-    "vatNumber": "TODO",
-    "legalInfo": "TODO",
+    "companyType": "Частная компания с ограниченной ответственностью, зарегистрированная в Англии и Уэльсе",
+    "companyNumber": "Регистрационный номер: 00000000",
+    "registeredOffice": "Юридический адрес: 10 Example House, London, United Kingdom",
+    "vatNumber": "Номер VAT: GB 000000000",
+    "legalInfo": "Вся информация, представленная на сайте, носит информационный характер и не является публичной офертой, если прямо не указано иное. Компания принимает разумные меры для обеспечения актуальности и точности информации, однако не несёт ответственности за возможные неточности или изменения условий оказания услуг.",
     "documents": {
-      "privacy": "TODO",
-      "cookies": "TODO",
-      "terms": "TODO",
-      "transportTerms": "TODO"
+      "title": "Политики и документы",
+      "privacy": "Политика конфиденциальности",
+      "cookies": "Политика использования cookies",
+      "terms": "Условия использования",
+      "transportTerms": "Условия оказания транспортных услуг"
     },
     "contacts": {
-      "title": "TODO",
-      "email": "TODO",
-      "phone": "TODO"
+      "title": "Контакты",
+      "email": "Email",
+      "phone": "Телефон"
     },
-    "copyright": "TODO"
+    "copyright": "© LONDON ROUTE TRANSFERS, 2009-2026. Все права защищены."
   },
   "common": {
     "learnMore": "TODO",
