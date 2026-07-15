@@ -375,3 +375,21 @@ What I learned: terms page — reuses privacy/cookie-policy паттерн (sect
 Model used: big-pickle
 
 Instrument used: OpenCode
+
+## Request 22
+
+Goal: собрать страницу Условий оказания транспортных услуг с оглавлением
+
+Prompt: 9.4 — Transport Services Terms
+
+Собери app/[locale]/transport-terms/page.tsx (server component) с полным текстом Условий оказания транспортных услуг из клиентского текста (все 18 пунктов: общие положения, информация о компании, услуги, бронирование и подтверждение, стоимость и оплата, отмена и изменение бронирования, no-show, время ожидания, задержки рейсов, ответственность клиента, багаж, поведение пассажиров, использование субподрядчиков, ограничение ответственности, форс-мажор, конфиденциальность, применимое право, изменения условий). Это самая длинная юридическая страница — раздели визуально на понятные блоки с якорями/оглавлением в начале страницы для удобной навигации по разделам. Структура и требования к переводу — как в предыдущих юридических страницах.
+
+Result: обновлён app/[locale]/transport-terms/page.tsx (server component) — generateMetadata на текущей локали с namespace legal.transportTerms. Структура: h1 заголовок, nav-оглавление (rounded-xl, primary-50 фон) сordered list ссылок #section-{key} на все 18 секций, далее цикл по sectionKeys (1-18) с id={`section-${key}`} и scroll-mt-24 для якорной навигации. Каждый раздел: h2 заголовок с номером + контент с парсингом по \n и дедупликацией списков. Заполнены translations: legal.transportTerms в en.json и ru.json — все 18 секций с title и content. Английский текст переведён из CLIENT_CONTENT.md (раздел "Условия оказания транспортных услуг"), русский взят дословно. `npm run build` и `npm run lint` проходят без ошибок.
+
+Used as-is / edited manually / rejected: used as-is
+
+What I learned: transportTerms — самая длинная юридическая страница (18 секций); nav-оглавление в начале страницы для удобной навигации — styled card с ordered list, якорные ссылки #section-{key}; scroll-mt-24 на section чтобы при переходе заголовок не прилипал к верху; sectionKeys с номерами в h2 для визуальной нумерации; namespace legal.transportTerms; повторная проверка — все 4 юридических страницы (privacy, cookie-policy, terms, transport-terms) используют идентичный паттерн рендеринга
+
+Model used: big-pickle
+
+Instrument used: OpenCode
