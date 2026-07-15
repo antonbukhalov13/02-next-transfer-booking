@@ -53,20 +53,28 @@
     }
   },
   "advantages": {
-    "title": "TODO",
-    "subtitle": "TODO",
-    "description": "TODO",
+    "title": "Why clients choose LONDON ROUTE TRANSFERS for private and corporate transport",
+    "subtitle": "Working with private and corporate clients, providing managed and predictable transport solutions",
+    "description": "LONDON ROUTE TRANSFERS is a transport company that organizes passenger travel in London and beyond. We work with private clients, companies, and groups. Our approach ensures a consistent level of service regardless of transport format and number of passengers.",
     "whoWeServe": {
-      "title": "TODO",
-      "privateClients": "TODO",
-      "corporateClients": "TODO",
-      "educational": "TODO",
-      "tourGroups": "TODO",
-      "eventOrganizers": "TODO"
+      "title": "Who we serve",
+      "privateClients": "Private clients",
+      "corporateClients": "Corporate clients",
+      "educational": "Educational institutions",
+      "tourGroups": "Tour groups",
+      "eventOrganizers": "Event organizers"
     },
     "whyChooseUs": {
-      "title": "TODO",
-      "items": ["TODO", "TODO", "TODO", "TODO", "TODO", "TODO", "TODO"]
+      "title": "Why choose LONDON ROUTE TRANSFERS",
+      "items": [
+        "Registered UK company with extensive experience",
+        "Own fleet with scalability to match client needs",
+        "Both individual and group transport available",
+        "Private, corporate, and institutional clients",
+        "Centralised management and control of all transport stages",
+        "Single point of responsibility for the client",
+        "Flexible operational model adaptable to different order formats"
+      ]
     }
   },
   "booking": {

@@ -1,6 +1,7 @@
 import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
 import ServicesSummary from "@/components/sections/ServicesSummary";
+import Advantages from "@/components/sections/Advantages";
 
 export default function HomePage() {
   return (
@@ -8,6 +9,7 @@ export default function HomePage() {
       <Hero />
       <About />
       <ServicesSummary />
+      <Advantages />
     </>
   );
 }
