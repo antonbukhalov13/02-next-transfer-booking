@@ -159,18 +159,48 @@
   },
   "legal": {
     "privacy": {
-      "title": "TODO",
+      "title": "Privacy Policy",
       "sections": {
-        "1": { "title": "TODO", "content": "TODO" },
-        "2": { "title": "TODO", "content": "TODO" },
-        "3": { "title": "TODO", "content": "TODO" },
-        "4": { "title": "TODO", "content": "TODO" },
-        "5": { "title": "TODO", "content": "TODO" },
-        "6": { "title": "TODO", "content": "TODO" },
-        "7": { "title": "TODO", "content": "TODO" },
-        "8": { "title": "TODO", "content": "TODO" },
-        "9": { "title": "TODO", "content": "TODO" },
-        "10": { "title": "TODO", "content": "TODO" }
+        "1": {
+          "title": "General Information",
+          "content": "This Privacy Policy describes how LONDON ROUTE TRANSFERS processes the personal data of website users.\n\nCompany: LONDON ROUTE TRANSFERS LTD\nJurisdiction: England and Wales\nRegistration Number: 00000000\nRegistered Office: 10 Example House, London, United Kingdom\n\nLONDON ROUTE TRANSFERS is a data controller within the meaning of UK GDPR."
+        },
+        "2": {
+          "title": "What Data We Collect",
+          "content": "We may collect the following categories of data:\n- first name and last name;\n- contact phone number;\n- email address;\n- travel information: route, date, time, number of passengers;\n- messages sent via website forms."
+        },
+        "3": {
+          "title": "Purposes of Data Processing",
+          "content": "Personal data is used for:\n- processing enquiries and requests;\n- organising and providing transport services;\n- communicating with the client;\n- internal administration."
+        },
+        "4": {
+          "title": "Legal Basis for Processing",
+          "content": "Data processing is carried out on the basis of:\n- performance of a contract or preparation for its conclusion;\n- the company's legitimate interests: processing requests, managing services."
+        },
+        "5": {
+          "title": "Data Transfer to Third Parties",
+          "content": "We may share data with:\n- drivers and transport partners;\n- contractors involved in service delivery.\n\nData is shared exclusively to the extent necessary to provide the service."
+        },
+        "6": {
+          "title": "Data Retention",
+          "content": "Personal data is retained no longer than necessary for the purposes of processing or in accordance with legal requirements."
+        },
+        "7": {
+          "title": "User Rights",
+          "content": "You have the right to:\n- access your personal data;\n- request correction of your data;\n- request deletion of your data;\n- restrict processing;\n- object to processing."
+        },
+        "8": {
+          "title": "Data Security",
+          "content": "The company takes reasonable technical and organisational measures to protect personal data."
+        },
+        "9": {
+          "title": "Data Enquiries",
+          "content": "For data processing enquiries, you may contact LONDON ROUTE TRANSFERS using the contact details provided on the website."
+        },
+        "10": {
+          "title": "Policy Changes",
+          "content": "The company reserves the right to amend this Privacy Policy."
+        }
       }
     },
     "cookiePolicy": {
