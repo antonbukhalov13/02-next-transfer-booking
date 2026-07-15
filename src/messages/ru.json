@@ -143,50 +143,50 @@
     }
   },
   "booking": {
-    "title": "TODO",
+    "title": "Забронировать трансфер",
     "form": {
-      "firstName": "TODO",
-      "lastName": "TODO",
-      "company": "TODO",
-      "phone": "TODO",
-      "email": "TODO",
-      "serviceType": "TODO",
+      "firstName": "Имя",
+      "lastName": "Фамилия",
+      "company": "Компания (если применимо)",
+      "phone": "Телефон",
+      "email": "Email",
+      "serviceType": "Тип услуги",
       "serviceOptions": {
-        "airport": "TODO",
-        "corporate": "TODO",
-        "group": "TODO",
-        "private": "TODO"
+        "airport": "Аэропортовый трансфер",
+        "corporate": "Корпоративный транспорт",
+        "group": "Групповая перевозка",
+        "private": "Частная поездка"
       },
-      "pickupAddress": "TODO",
-      "destination": "TODO",
-      "date": "TODO",
-      "time": "TODO",
-      "passengers": "TODO",
-      "airportMeetAndGreet": "TODO",
+      "pickupAddress": "Адрес подачи",
+      "destination": "Пункт назначения",
+      "date": "Дата поездки",
+      "time": "Время подачи",
+      "passengers": "Количество пассажиров",
+      "airportMeetAndGreet": "Требуется встреча в аэропорту",
       "meetGreetOptions": {
-        "yes": "TODO",
-        "no": "TODO"
+        "yes": "Да",
+        "no": "Нет"
       },
-      "comment": "TODO",
-      "consent": "TODO",
-      "submit": "TODO"
+      "comment": "Дополнительная информация: багаж, особые требования, комментарий",
+      "consent": "Я даю согласие на обработку персональных данных в соответствии с Политикой конфиденциальности и Политикой использования файлов cookie",
+      "submit": "Отправить запрос"
     },
     "privacy": {
-      "text": "TODO"
+      "text": "LONDON ROUTE TRANSFERS обрабатывает персональные данные, указанные в форме, исключительно с целью обработки запроса, организации перевозки и связи с клиентом. Данные не используются для маркетинговых рассылок без отдельного согласия пользователя и не передаются третьим лицам, за исключением случаев, необходимых для выполнения услуги, например водителям или партнёрам-перевозчикам. Пользователь имеет право запросить доступ к своим данным, их исправление или удаление."
     },
     "states": {
-      "submitting": "TODO",
-      "success": "TODO",
-      "successMessage": "TODO",
-      "error": "TODO",
-      "errorMessage": "TODO"
+      "submitting": "Отправка...",
+      "success": "Запрос отправлен",
+      "successMessage": "Спасибо! Мы получили ваш запрос на бронирование и свяжемся с вами в ближайшее время.",
+      "error": "Ошибка",
+      "errorMessage": "Что-то пошло не так. Пожалуйста, попробуйте снова или свяжитесь с нами напрямую."
     }
   },
   "validation": {
-    "required": "TODO",
-    "email": "TODO",
-    "minPassengers": "TODO",
-    "consent": "TODO"
+    "required": "Это поле обязательно для заполнения",
+    "email": "Пожалуйста, введите корректный email",
+    "minPassengers": "Необходим как минимум 1 пассажир",
+    "consent": "Необходимо согласие на обработку данных для отправки формы"
   },
   "manager": {
     "title": "TODO",

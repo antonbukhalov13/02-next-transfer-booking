@@ -78,50 +78,50 @@
     }
   },
   "booking": {
-    "title": "TODO",
+    "title": "Book a Transfer",
     "form": {
-      "firstName": "TODO",
-      "lastName": "TODO",
-      "company": "TODO",
-      "phone": "TODO",
-      "email": "TODO",
-      "serviceType": "TODO",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "company": "Company (if applicable)",
+      "phone": "Phone",
+      "email": "Email",
+      "serviceType": "Service Type",
       "serviceOptions": {
-        "airport": "TODO",
-        "corporate": "TODO",
-        "group": "TODO",
-        "private": "TODO"
+        "airport": "Airport Transfer",
+        "corporate": "Corporate Transport",
+        "group": "Group Travel",
+        "private": "Private Travel"
       },
-      "pickupAddress": "TODO",
-      "destination": "TODO",
-      "date": "TODO",
-      "time": "TODO",
-      "passengers": "TODO",
-      "airportMeetAndGreet": "TODO",
+      "pickupAddress": "Pickup Address",
+      "destination": "Destination",
+      "date": "Travel Date",
+      "time": "Pickup Time",
+      "passengers": "Number of Passengers",
+      "airportMeetAndGreet": "Airport meet and greet required",
       "meetGreetOptions": {
-        "yes": "TODO",
-        "no": "TODO"
+        "yes": "Yes",
+        "no": "No"
       },
-      "comment": "TODO",
-      "consent": "TODO",
-      "submit": "TODO"
+      "comment": "Additional Information: luggage, special requirements, comments",
+      "consent": "I consent to the processing of my personal data in accordance with the Privacy Policy and Cookie Policy",
+      "submit": "Submit Request"
     },
     "privacy": {
-      "text": "TODO"
+      "text": "LONDON ROUTE TRANSFERS processes personal data provided in this form exclusively for the purpose of processing your enquiry, arranging transport, and communicating with you. Your data will not be used for marketing purposes without your separate consent and will not be shared with third parties, except where necessary to fulfil the service (e.g. with drivers or carrier partners). You have the right to request access to your data, its correction, or deletion."
     },
     "states": {
-      "submitting": "TODO",
-      "success": "TODO",
-      "successMessage": "TODO",
-      "error": "TODO",
-      "errorMessage": "TODO"
+      "submitting": "Submitting...",
+      "success": "Request Submitted",
+      "successMessage": "Thank you! We have received your booking request and will get back to you shortly.",
+      "error": "Error",
+      "errorMessage": "Something went wrong. Please try again or contact us directly."
     }
   },
   "validation": {
-    "required": "TODO",
-    "email": "TODO",
-    "minPassengers": "TODO",
-    "consent": "TODO"
+    "required": "This field is required",
+    "email": "Please enter a valid email address",
+    "minPassengers": "At least 1 passenger is required",
+    "consent": "You must consent to data processing to submit the form"
   },
   "manager": {
     "title": "TODO",
