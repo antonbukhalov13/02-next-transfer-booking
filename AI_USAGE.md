@@ -177,3 +177,21 @@ What I learned: footer — server component потому что использу
 Model used: big-pickle
 
 Instrument used: OpenCode
+
+## Request 11
+
+Goal: собрать секцию hero на лендинге
+
+Prompt: 5.1 — hero
+
+Собери секцию hero на лендинге (app/[locale]/page.tsx, server component) на основе клиентского текста: заголовок — Комфортные и надёжные трансферы в Лондоне — аэропорты, бизнес и частные поездки; подзаголовок — Услуги пассажирских перевозок с профессиональными водителями и представительским транспортом; краткое описание — Работаем с частными клиентами, компаниями, образовательными учреждениями и туристическими группами; кнопка — Заказать трансфер (ведёт на /booking); Мы свяжемся с вами в рабочее время для уточнения деталей поездки. Переведи на английский как основной текст сайта, добавь русский вариант через messages. Текст должен идти через useTranslations/getTranslations, не хардкодиться в компоненте.
+
+Result: создан components/sections/Hero.tsx (server component) — getTranslations("hero"), gradient-фон (primary-900→primary-950), декоративный grid-overlay, max-w-3xl контент: h1 (title), subtitle, description, Link на /booking с accent-стилем (cta), note. Обновлён app/[locale]/page.tsx — импорт Hero, рендер <Hero />. Обновлены messages/en.json и ru.json — секция hero заполнена реальным текстом на обоих языках. `npm run build` и `npm run lint` проходят без ошибок.
+
+Used as-is / edited manually / rejected: used as-is
+
+What I learned: Hero — server component потому что использует только getTranslations, без state/хуков; gradient + grid-overlay — декоративный фон без изображений; Link вместо <a> для client-side навигации в Next.js App Router
+
+Model used: big-pickle
+
+Instrument used: OpenCode
