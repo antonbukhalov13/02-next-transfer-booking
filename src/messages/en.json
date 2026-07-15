@@ -302,26 +302,80 @@
       }
     },
     "transportTerms": {
-      "title": "TODO",
+      "title": "Transport Services Terms",
       "sections": {
-        "1": { "title": "TODO", "content": "TODO" },
-        "2": { "title": "TODO", "content": "TODO" },
-        "3": { "title": "TODO", "content": "TODO" },
-        "4": { "title": "TODO", "content": "TODO" },
-        "5": { "title": "TODO", "content": "TODO" },
-        "6": { "title": "TODO", "content": "TODO" },
-        "7": { "title": "TODO", "content": "TODO" },
-        "8": { "title": "TODO", "content": "TODO" },
-        "9": { "title": "TODO", "content": "TODO" },
-        "10": { "title": "TODO", "content": "TODO" },
-        "11": { "title": "TODO", "content": "TODO" },
-        "12": { "title": "TODO", "content": "TODO" },
-        "13": { "title": "TODO", "content": "TODO" },
-        "14": { "title": "TODO", "content": "TODO" },
-        "15": { "title": "TODO", "content": "TODO" },
-        "16": { "title": "TODO", "content": "TODO" },
-        "17": { "title": "TODO", "content": "TODO" },
-        "18": { "title": "TODO", "content": "TODO" }
+        "1": {
+          "title": "General Provisions",
+          "content": "These Terms govern the provision of transport services by LONDON ROUTE TRANSFERS.\n\nBy ordering services, the client confirms acceptance of these Terms."
+        },
+        "2": {
+          "title": "Company Information",
+          "content": "LONDON ROUTE TRANSFERS LTD, Private Limited Company, registered in England and Wales.\n\nCompany Number: 00000000\nRegistered Office: 10 Example House, London, United Kingdom\nVAT Number: GB 000000000"
+        },
+        "3": {
+          "title": "Services",
+          "content": "The company provides:\n- airport transfers;\n- corporate transport;\n- group transport;\n- private trips and event services.\n\nAll services are performed on the basis of previously agreed terms."
+        },
+        "4": {
+          "title": "Booking and Confirmation",
+          "content": "- A client enquiry is not a confirmed booking;\n- A booking is only confirmed after all terms have been agreed;\n- The company reserves the right to reject an enquiry without providing reasons."
+        },
+        "5": {
+          "title": "Pricing and Payment",
+          "content": "- Pricing is determined individually;\n- Payment is made in accordance with the agreed terms;\n- The company reserves the right to request prepayment."
+        },
+        "6": {
+          "title": "Cancellation and Amendment",
+          "content": "- Cancellation or amendment must be submitted in advance;\n- In the event of late cancellation, the company may retain part or all of the service fee;\n- Cancellation terms may depend on the specific order."
+        },
+        "7": {
+          "title": "No-Show",
+          "content": "If the client does not arrive at the agreed time and place:\n- the booking is deemed to have been fulfilled;\n- payment is not refunded.\n\nFor airport transfers, the driver waits for a reasonable time after the flight has landed."
+        },
+        "8": {
+          "title": "Waiting Time",
+          "content": "- Waiting time may be included in the price or calculated separately;\n- Additional waiting time is charged separately."
+        },
+        "9": {
+          "title": "Flight Delays",
+          "content": "For airport transfers, the company monitors the flight status. In the event of a delay, vehicle dispatch is adjusted wherever possible.\n\nThe company is not liable for delays caused by third parties."
+        },
+        "10": {
+          "title": "Client Responsibility",
+          "content": "The client must:\n- provide accurate trip information;\n- comply with conduct rules;\n- not cause damage to the vehicle.\n\nIn the event of damage, the client is liable for compensation."
+        },
+        "11": {
+          "title": "Luggage",
+          "content": "- The client must inform in advance of the quantity and type of luggage;\n- The company is not liable for loss of or damage to luggage."
+        },
+        "12": {
+          "title": "Passenger Conduct",
+          "content": "The company reserves the right to refuse carriage if:\n- the passenger's behaviour poses a threat;\n- the passenger is in a condition that prevents safe transport."
+        },
+        "13": {
+          "title": "Use of Subcontractors",
+          "content": "The company reserves the right to engage third parties to perform services. In such cases, LONDON ROUTE TRANSFERS remains the responsible operator towards the client."
+        },
+        "14": {
+          "title": "Limitation of Liability",
+          "content": "To the maximum extent permitted by law:\n- the company is not liable for indirect losses;\n- the company is not liable for delays caused by road conditions, weather, or actions of third parties."
+        },
+        "15": {
+          "title": "Force Majeure",
+          "content": "The company is not liable for failure to fulfil obligations due to circumstances beyond its control."
+        },
+        "16": {
+          "title": "Confidentiality",
+          "content": "The processing of personal data is carried out in accordance with the Privacy Policy."
+        },
+        "17": {
+          "title": "Applicable Law",
+          "content": "These Terms are governed by the laws of England and Wales."
+        },
+        "18": {
+          "title": "Changes to Terms",
+          "content": "The company reserves the right to amend these Terms. The current version is published on the website."
+        }
       }
     }
   },
