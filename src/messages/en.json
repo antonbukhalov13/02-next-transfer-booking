@@ -249,20 +249,56 @@
       }
     },
     "terms": {
-      "title": "TODO",
+      "title": "Terms of Use",
       "sections": {
-        "1": { "title": "TODO", "content": "TODO" },
-        "2": { "title": "TODO", "content": "TODO" },
-        "3": { "title": "TODO", "content": "TODO" },
-        "4": { "title": "TODO", "content": "TODO" },
-        "5": { "title": "TODO", "content": "TODO" },
-        "6": { "title": "TODO", "content": "TODO" },
-        "7": { "title": "TODO", "content": "TODO" },
-        "8": { "title": "TODO", "content": "TODO" },
-        "9": { "title": "TODO", "content": "TODO" },
-        "10": { "title": "TODO", "content": "TODO" },
-        "11": { "title": "TODO", "content": "TODO" },
-        "12": { "title": "TODO", "content": "TODO" }
+        "1": {
+          "title": "General Provisions",
+          "content": "These Terms of Use govern access to and use of this website, owned by LONDON ROUTE TRANSFERS.\n\nBy using the website, the user confirms that they have read these Terms and accept them in full.\n\nIf the user does not agree with the Terms, they must cease using the website."
+        },
+        "2": {
+          "title": "Company Information",
+          "content": "LONDON ROUTE TRANSFERS LTD, Private Limited Company, registered in England and Wales.\n\nCompany Number: 00000000\nRegistered Office: 10 Example House, London, United Kingdom\nVAT Number: GB 000000000"
+        },
+        "3": {
+          "title": "Purpose of the Website",
+          "content": "The website is intended for:\n- providing information about LONDON ROUTE TRANSFERS transport services;\n- receiving client enquiries;\n- initial communication with users.\n\nThe website is not a platform for concluding automated contracts."
+        },
+        "4": {
+          "title": "No Public Offer",
+          "content": "All information published on the website is for informational purposes only and does not constitute a public offer or legally binding proposal.\n\nA service contract is concluded separately after terms have been agreed with the client."
+        },
+        "5": {
+          "title": "Use of the Website",
+          "content": "The user undertakes to:\n- use the website exclusively for lawful purposes;\n- not take actions aimed at disrupting the website's operation;\n- not use the website to transmit malicious code or gain unauthorised access;\n- not attempt to gain access to the website's systems."
+        },
+        "6": {
+          "title": "Limitation of Liability",
+          "content": "LONDON ROUTE TRANSFERS does not guarantee that the website will operate continuously and without errors, or that the information on the website is always complete and up to date.\n\nThe company is not liable for any losses arising from the use of the website, technical failures, or temporary unavailability of the website.\n\nTo the maximum extent permitted by the laws of England and Wales, the liability of LONDON ROUTE TRANSFERS is excluded."
+        },
+        "7": {
+          "title": "Website Information and Content",
+          "content": "LONDON ROUTE TRANSFERS makes reasonable efforts to ensure the accuracy of information but does not guarantee its completeness or currency.\n\nThe company reserves the right to change the content of the website without prior notice."
+        },
+        "8": {
+          "title": "Intellectual Property",
+          "content": "All materials published on the website, including texts, design, graphics, and logos, are the property of LONDON ROUTE TRANSFERS or are used under lawful licence.\n\nAny use of materials without written permission is prohibited."
+        },
+        "9": {
+          "title": "Third-Party Links",
+          "content": "The website may contain links to third-party websites. LONDON ROUTE TRANSFERS does not control and is not responsible for the content of such websites."
+        },
+        "10": {
+          "title": "Privacy and Cookies",
+          "content": "The use of personal data is regulated by:\n- the Privacy Policy;\n- the Cookie Policy."
+        },
+        "11": {
+          "title": "Changes to Terms",
+          "content": "LONDON ROUTE TRANSFERS reserves the right to amend these Terms at any time. The current version is published on the website.\n\nContinued use of the website constitutes acceptance of the updated Terms."
+        },
+        "12": {
+          "title": "Applicable Law",
+          "content": "These Terms are governed by the laws of England and Wales.\n\nAll disputes are subject to the jurisdiction of the courts of England and Wales."
+        }
       }
     },
     "transportTerms": {
