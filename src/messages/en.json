@@ -25,31 +25,31 @@
     "paragraph3": "We build every trip as a managed process — from receiving the request to completing the route. This approach ensures a consistent level of service, regardless of the transport format and number of passengers."
   },
   "services": {
-    "title": "TODO",
-    "subtitle": "TODO",
+    "title": "Transfers and Transport for Any Task",
+    "subtitle": "We arrange travel in London and beyond — from individual transfers to group and corporate transport.",
     "airport": {
-      "title": "TODO",
-      "description": "TODO",
-      "features": ["TODO", "TODO", "TODO"]
+      "title": "Airport Transfers",
+      "description": "Transfers to Heathrow, Gatwick, Stansted, Luton and London City. Airport meet and greet, luggage assistance, flight time monitoring.",
+      "features": ["Heathrow, Gatwick, Stansted, Luton, London City", "Meet and greet at airport", "Luggage assistance"]
     },
     "corporate": {
-      "title": "TODO",
-      "description": "TODO",
-      "features": ["TODO", "TODO"]
+      "title": "Corporate Transport",
+      "description": "Travel for employees and clients. Transport for business events and regular routes.",
+      "features": ["Employee and client transport", "Business events", "Regular routes"]
     },
     "group": {
-      "title": "TODO",
-      "description": "TODO",
-      "features": ["TODO", "TODO"]
+      "title": "Group Travel",
+      "description": "Minibuses and coaches for groups. Schools, tourists, corporate trips.",
+      "features": ["Minibuses and coaches", "Schools and universities", "Tour groups"]
     },
     "private": {
-      "title": "TODO",
-      "description": "TODO",
-      "features": ["TODO", "TODO"]
+      "title": "Private Travel",
+      "description": "Weddings, events, city and long-distance travel.",
+      "features": ["Weddings and celebrations", "City travel", "Long-distance trips"]
     },
     "keyBenefits": {
-      "title": "TODO",
-      "items": ["TODO", "TODO", "TODO", "TODO", "TODO"]
+      "title": "Key Benefits",
+      "items": ["Executive and business class vehicles", "Minibuses and coaches for groups", "Scalability to match order volume", "Single operator for different transport formats", "Vehicle adaptation to client needs"]
     }
   },
   "advantages": {
