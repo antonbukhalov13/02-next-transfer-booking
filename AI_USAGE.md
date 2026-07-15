@@ -411,3 +411,21 @@ What I learned: все страницы теперь используют еди
 Model used: big-pickle
 
 Instrument used: OpenCode
+
+## Request 24
+
+Goal: доработать адаптивность всех страниц и компонентов
+
+Prompt: 11 — адаптивность
+
+Доработай стили всех страниц и компонентов (лендинг-секции, страница услуг, форма бронирования, страница менеджера с фильтрами и списком, юридические страницы, header/footer) для корректного отображения на мобильных экранах (примерно от 320px) и планшетах. Навигация в header должна адаптироваться (при необходимости — компактное/бургер-меню на маленьких экранах), карточки услуг и преимуществ — переходить в одну колонку, форма бронирования — оставаться удобной для заполнения с телефона, список бронирований менеджера — не терять читаемость на узких экранах (например переход от таблицы к карточному виду). Работай через Tailwind-брейкпоинты, не переписывай существующую вёрстку с нуля — только адаптируй.
+
+Result: аудит responsive design по всем компонентам. Исправлено 3 файла: Header — добавлен client-компонент MobileMenu.tsx (burger toggle, выпадающее меню с навигацией, booking-кнопкой и LanguageSwitcher на мобильных); BookingsList — карточный вид на мобильных (md:hidden) с полной информацией (client, company, service, route, notes, date/time, passengers, status badge), таблица только на md+; services/page.tsx — hero heading исправлен с text-4xl на text-3xl sm:text-4xl lg:text-5xl. Остальные компоненты (Footer, Hero, About, ServicesSummary, Advantages, BookingForm, Legal pages) уже были адаптивны — grid-брейкпоинты, sm/lg padding, hidden/table-cell для table columns. `npm run build` и `npm run lint` проходят без ошибок.
+
+Used as-is / edited manually / rejected: used as-is
+
+What I learned: Header — server component с getTranslations, burger menu вынесен в отдельный client-компонент MobileMenu.tsx; BookingsList — dual rendering (cards md:hidden + table hidden md:block) вместо conditional rendering через media queries в CSS; footer уже был адаптивен (md:grid-cols-2 lg:grid-cols-4); booking form уже был адаптивен (sm:grid-cols-2 для парных полей); legal pages уже были адаптивны (max-w-3xl); services page hero text-4xl был слишком большим для 320px
+
+Model used: big-pickle
+
+Instrument used: OpenCode
