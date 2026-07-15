@@ -285,3 +285,21 @@ What I learned: Zod v4 API отличается от v3 — z.literal(true, { er
 Model used: big-pickle
 
 Instrument used: OpenCode
+
+## Request 17
+
+Goal: добавить состояния формы idle/submitting/success/error
+
+Prompt: 7.2 — состояния формы idle/submitting/success/error
+
+Доработай BookingForm.tsx: добавь состояния submitting (кнопка disabled, индикатор загрузки, например спиннер или изменённый текст кнопки на время имитации отправки через setTimeout ~800-1200ms), success (после успешной отправки — визуальное подтверждение, что заявка принята в обработку, форма очищается через react-hook-form reset), error (на случай, если потребуется показать сгенерированную ошибку отправки). Важно: данные формы никуда не сохраняются — ни в localStorage, ни в стейт, который переживает размонтирование компонента, ни тем более в mock-store бронирований менеджера. Тексты состояний — через messages (booking.states.*).
+
+Result: обновлён components/booking-form/BookingForm.tsx — добавлен useState<FormState>("idle") с типом "idle" | "submitting" | "success" | "error". Функция onSubmit(): setFormState("submitting"), setTimeout 1000ms → setFormState("success") + reset(). handleDismiss(): setFormState("idle"). Success state: зелёная карточка (border-green-200, bg-green-50) с SVG checkmark иконкой, заголовок success, текст successMessage, кнопка для возврата к форме. Error state: красный alert блок (border-red-200, bg-red-50) с заголовком и описанием. Submitting state: fieldset disabled, кнопка показывает SVG спиннер (animate-spin) + текст "Отправка...". Кнопка disabled через isSubmitting. Нет localStorage, нет mock-store, нет сохранения данных. `npm run build` и `npm run lint` проходят без ошибок.
+
+Used as-is / edited manually / rejected: used as-is
+
+What I learned: React lint (react-hooks/purity) запрещает Math.random() в теле компонента — даже внутри setTimeout callback, если он вызывается при рендере; fieldset disabled блокирует все поля формы одновременно; success state — отдельный JSX вместо рендера формы; Spinner SVG через animate-spin + opacity-25/75 на круге/пути; handleDismiss возвращает в idle state для повторного использования формы
+
+Model used: big-pickle
+
+Instrument used: OpenCode
