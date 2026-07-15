@@ -141,3 +141,21 @@ What I learned: идентичная структура ключей в en/ru ф
 Model used: big-pickle
 
 Instrument used: OpenCode
+
+## Request 9
+
+Goal: собрать layout с generateMetadata, header и language-switcher
+
+Prompt: 4.1 — layout, header, language-switcher
+
+Собери src/app/[locale]/layout.tsx (server component) с generateMetadata (заглушка metadata на этом шаге, детальный SEO будет отдельным шагом) и подключением header/footer. Header (server component) — с логотипом-текстом LONDON ROUTE TRANSFERS и навигацией по секциям лендинга (О компании, Услуги, Преимущества, Контакты) и на страницу бронирования. LanguageSwitcher — отдельный client component ("use client") с переключением между en/ru через next-intl (Link/useRouter из next-intl, сохраняя текущий путь). Тексты навигации — через переводы (messages), не хардкод.
+
+Result: обновлён src/app/[locale]/layout.tsx — generateMetadata с getTranslations("seo.home"), generateStaticParams для статической генерации en/ru, импорт Header и Footer, обёртка <html><body><Header /><main>{children}</main><Footer /></body></html>. Создан components/layout/Header.tsx (server component) — логотип-ссылка на "/" с переводом header.logo, навигация из 4 ссылок (about/services/advantages/contacts) через header.nav.*, кнопка бронирования header.nav.booking с accent-стилем, LanguageSwitcher. Создан components/layout/LanguageSwitcher.tsx ("use client") — useLocale + useTranslations + useRouter + usePathname, переключает сегмент локали в pathname, кнопка с текстом другого языка (RU/EN). Создан components/layout/Footer.tsx (server component) — заглушка с company info из footer.*, ссылки на юридические страницы, контакты, копирайт. `npm run build` и `npm run lint` проходят без ошибок.
+
+Used as-is / edited manually / rejected: used as-is
+
+What I learned: Header — server component потому что использует только getTranslations и не имеет state/хуков; LanguageSwitcher — client потому что использует useLocale, useRouter, usePathname для интерактивного переключения
+
+Model used: big-pickle
+
+Instrument used: OpenCode
