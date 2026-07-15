@@ -195,3 +195,21 @@ What I learned: Hero — server component потому что используе
 Model used: big-pickle
 
 Instrument used: OpenCode
+
+## Request 12
+
+Goal: собрать секцию "о компании" на лендинге
+
+Prompt: 5.2 — about (о компании)
+
+Собери секцию "о компании" на лендинге на основе клиентского текста: заголовок — LONDON ROUTE TRANSFERS — надёжный оператор пассажирских перевозок в Лондоне; подзаголовок — Трансферы, корпоративный транспорт и групповые перевозки; текст — LONDON ROUTE TRANSFERS — транспортная компания, которая организует пассажирские перевозки в Лондоне и за его пределами. Мы работаем с частными клиентами, компаниями и группами. Мы выстраиваем каждую поездку как управляемый процесс — от получения заявки до завершения маршрута. Такой подход позволяет обеспечивать стабильный уровень сервиса, независимо от формата перевозки и количества пассажиров. Переведи на английский как основной, добавь русский через messages. Текст можно разбить на короткие абзацы визуально, ничего не сокращая по смыслу.
+
+Result: создан components/sections/About.tsx (server component) — getTranslations("about"), белый фон, max-w-7xl контейнер: центрированный заголовок h2 (title), subtitle primary-600, 3 абзаца (paragraph1-3) с leading-relaxed в max-w-2xl. Обновлён app/[locale]/page.tsx — добавлен импорт About, рендер <About /> после <Hero />. Обновлены messages/en.json и ru.json — секция about заполнена реальным текстом на обоих языках. `npm run build` и `npm run lint` проходят без ошибок.
+
+Used as-is / edited manually / rejected: used as-is
+
+What I learned: About — server component потому что использует только getTranslations, без state/хуков; id="about" на секции для якорной навигации из header; текст разбит на 3 отдельных ключа (paragraph1-3) для визуального разделения на абзацы через space-y-4
+
+Model used: big-pickle
+
+Instrument used: OpenCode
