@@ -159,3 +159,21 @@ What I learned: Header — server component потому что использу
 Model used: big-pickle
 
 Instrument used: OpenCode
+
+## Request 10
+
+Goal: собрать footer с полным контентом из клиентского текста
+
+Prompt: 4.2 — footer
+
+Собери footer (server component) на основе клиентского текста: LONDON ROUTE TRANSFERS LTD, Private Limited Company registered in England and Wales. Company Number: 00000000. Registered Office: 10 Example House, London, United Kingdom. VAT Number: GB 000000000. Юридическая информация: вся информация на сайте носит информационный характер и не является публичной офертой, если прямо не указано иное. Компания принимает разумные меры для обеспечения актуальности и точности информации, однако не несёт ответственности за возможные неточности или изменения условий оказания услуг. Политики и документы: Политика конфиденциальности; Политика использования cookies; Условия использования; Условия оказания транспортных услуг (ссылки на соответствующие страницы). Контакты: Email booking@example.test, телефон +44 0000 000000. Копирайт: © LONDON ROUTE TRANSFERS, 2009-2026. All rights reserved. Раздели футер на колонки: логотип, навигация по секциям, юридические ссылки, нижняя строка с реквизитами и копирайтом. Переведи на английский как основной язык, добавь русский вариант через переводы. Ничего не сокращай и не добавляй от себя.
+
+Result: обновлён components/layout/Footer.tsx — 4-колоночная сетка (lg:grid-cols-4): колонка 1 — companyName, companyType, companyNumber, registeredOffice, vatNumber; колонка 2 — documents.title со ссылками на privacy/cookie-policy/terms/transport-terms; колонка 3 — contacts.title с email (mailto:) и phone (tel:); колонка 4 — legalInfo (юридическая информация). Нижняя строка — copyright с border-t. Обновлены messages/en.json и messages/ru.json — секция footer заполнена реальным текстом: companyType, companyNumber, registeredOffice, vatNumber, legalInfo, documents.title, contacts.title/email/phone, copyright на обоих языках. `npm run build` и `npm run lint` проходят без ошибок.
+
+Used as-is / edited manually / rejected: used as-is
+
+What I learned: footer — server component потому что использует только getTranslations, без state/хуков; contacts.email/phone в переводах — это метки ("Email"/"Телефон"), а реальные значения (booking@example.test, +44 0000 000000) захардкожены в JSX как константы; legalInfo — длинный текст, в переводе хранится целиком
+
+Model used: big-pickle
+
+Instrument used: OpenCode
