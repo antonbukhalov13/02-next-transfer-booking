@@ -388,7 +388,25 @@ Result: обновлён app/[locale]/transport-terms/page.tsx (server component
 
 Used as-is / edited manually / rejected: used as-is
 
-What I learned: transportTerms — самая длинная юридическая страница (18 секций); nav-оглавление в начале страницы для удобной навигации — styled card с ordered list, якорные ссылки #section-{key}; scroll-mt-24 на section чтобы при переходе заголовок не прилипал к верху; sectionKeys с номерами в h2 для визуальной нумерации; namespace legal.transportTerms; повторная проверка — все 4 юридических страницы (privacy, cookie-policy, terms, transport-terms) используют идентичный паттерн рендеринга
+What I learned: transportTerms — самая длинная юридическая страница (18 секций); nav-оглавление в начале страницы для удобной навигации — styled card с ordered list, якорные ссылки #section-{key}; scroll-mt-24 на section чтобы при переходе заголовок не прилипал к верху; sectionKeys с номерами в h2 для визуальной нумерации; namespace legal.transportTerms; повторная проверка — все 4 юридические страницы (privacy, cookie-policy, terms, transport-terms) используют идентичный паттерн рендеринга
+
+Model used: big-pickle
+
+Instrument used: OpenCode
+
+## Request 23
+
+Goal: добавить SEO metadata для всех страниц сайта
+
+Prompt: 10 — SEO metadata
+
+Добавь generateMetadata (или экспортируемый metadata, где страница полностью статична) для каждой страницы: лендинг, услуги, бронирование, менеджер, все 4 юридические страницы. Title и description — осмысленные, на языке текущей локали (используй getTranslations внутри generateMetadata), отражают содержание страницы (например, для лендинга — про трансферы и перевозки в Лондоне, для privacy — про политику конфиденциальности LONDON ROUTE TRANSFERS). Добавь базовые OpenGraph-поля (title, description, locale). Тексты metadata можно вынести в messages (secция seo.* по страницам) или собирать программно из уже существующих переводов секций — выбери более чистый вариант и придерживайся его для всех страниц одинаково.
+
+Result: заполнены seo.* ключи в en.json и ru.json — 8 страниц (home, services, booking, manager, privacy, cookiePolicy, terms, transportTerms) с title и description на обоих языках. Добавлен generateMetadata на home page (ранее не было). Исправлены generateMetadata на всех 7 остальных страницах — переведены с ad-hoc namespace (servicesPage, booking, manager, legal.*) на единый seo.* namespace. Каждый generateMetadata теперь включает: title, description, openGraph (title, description, locale, siteName, type: "website"), alternates.languages (en/ru). en.json расширен с 2 до 8 seo записей (было только home и services). `npm run build` и `npm run lint` проходят без ошибок.
+
+Used as-is / edited manually / rejected: used as-is
+
+What I learned: все страницы теперь используют единый seo.* namespace для metadata — чище чем читать из content namespace (где description мог быть слишком длинным); alternates.languages для hreflang — en/ru пары на каждой странице; openGraph.type "website" для всех страниц; locale layout seo.* всё ещё используется как fallback
 
 Model used: big-pickle
 
