@@ -339,3 +339,21 @@ What I learned: legal pages — server components (generateMetadata); конте
 Model used: big-pickle
 
 Instrument used: OpenCode
+
+## Request 20
+
+Goal: собрать страницу Cookie Policy
+
+Prompt: 9.2 — Cookie Policy
+
+Собери app/[locale]/cookie-policy/page.tsx (server component) с полным текстом Политики использования файлов cookies из клиентского текста (все 10 пунктов: общая информация, что такое cookies, какие cookies используем — строго необходимые/аналитические/функциональные, правовые основания, получение согласия, управление cookies, сторонние cookies, срок хранения, изменения политики, контактная информация). Та же структура подачи, что и в privacy: заголовки разделов, списки для перечислений, перевод на английский как основной + русский через messages, ничего не выдумывать и не сокращать.
+
+Result: обновлён app/[locale]/cookie-policy/page.tsx (server component) — generateMetadata на текущей локали с namespace legal.cookiePolicy. Структура: идентична privacy/page.tsx — h1 заголовок, цикл по sectionKeys (1-10), каждый раздел: h2 заголовок + контент с парсингом по \n и дедупликацией списков. Заполнены translations: legal.cookiePolicy в en.json и ru.json — все 10 секций с title и content. Английский текст переведён из CLIENT_CONTENT.md (раздел "Политика использования файлов cookies"), русский взят дословно. `npm run build` и `npm run lint` проходят без ошибок.
+
+Used as-is / edited manually / rejected: used as-is
+
+What I learned: cookie policy page — reuses privacy page паттерн (sectionKeys, split/dedup рендеринг); namespace legal.cookiePolicy аналогичен legal.privacy; перевод PECR — Privacy and Electronic Communications Regulations (без перевода, как название акта); строго необходимые/аналитические/функциональные cookies — три категории в одном параграфе, не требуют отдельных секций
+
+Model used: big-pickle
+
+Instrument used: OpenCode
