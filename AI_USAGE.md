@@ -87,3 +87,21 @@ What I learned: при изменении имён полей в типах ну
 Model used: big-pickle
 
 Instrument used: OpenCode
+
+## Request 6
+
+Goal: создать массив моковых бронирований для страницы менеджера
+
+Prompt: 2.2 — моковые данные бронирований
+
+Создай lib/mock-data.ts с массивом моковых бронирований (минимум 8 записей) по типу из types/mock-bookings.ts. Данные должны быть разнообразными: разные типы услуг (airport transfer, corporate, group, private), разные статусы (pending, confirmed, completed, cancelled), разное количество пассажиров, часть записей — с company, часть — без, часть — с notes, часть — без. Имена клиентов и адреса — вымышленные, но правдоподобные для Лондона (реальные районы, аэропорты Heathrow/Gatwick/Stansted/Luton/London City).
+
+Result: обновлён lib/mock-data.ts — 10 записей типа MockBooking. Покрытие: 4 serviceType (airport×3, corporate×2, group×2, private×3), 4 статуса (pending×3, confirmed×4, completed×2, cancelled×1), пассажиры 1-24, company есть у 5 записей, notes есть у 7 записей. Адреса: реальные локации Лондона (Downing St, Baker St, Canary Wharf, Kensington, Piccadilly, Bank of England, Brompton Road, Gower Street, Wembley, Brighton), аэропорты — Heathrow T5, Gatwick North/South, Stansted, Luton, London City. `npm run build` и `npm run lint` проходят без ошибок.
+
+Used as-is / edited manually / rejected: used as-is
+
+What I learned: для реалистичности моковых данных лучше использовать реальные адреса и названия районов Лондона — это сразу даёт понимание контекста на ревью;
+
+Model used: big-pickle
+
+Instrument used: OpenCode
