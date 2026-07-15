@@ -357,3 +357,21 @@ What I learned: cookie policy page — reuses privacy page паттерн (secti
 Model used: big-pickle
 
 Instrument used: OpenCode
+
+## Request 21
+
+Goal: собрать страницу Условий использования
+
+Prompt: 9.3 — Terms of Use
+
+Собери app/[locale]/terms/page.tsx (server component) с полным текстом Условий использования из клиентского текста (все 12 пунктов: общие положения, информация о компании, назначение сайта, отсутствие публичной оферты, использование сайта, ограничение ответственности, информация и содержание сайта, интеллектуальная собственность, ссылки на сторонние ресурсы, конфиденциальность и cookies, изменения условий, применимое право). Структура и требования к переводу — как в предыдущих юридических страницах.
+
+Result: обновлён app/[locale]/terms/page.tsx (server component) — generateMetadata на текущей локали с namespace legal.terms. Структура: идентична privacy/page.tsx и cookie-policy/page.tsx — h1 заголовок, цикл по sectionKeys (1-12), каждый раздел: h2 заголовок + контент с парсингом по \n и дедупликацией списков. Заполнены translations: legal.terms в en.json и ru.json — все 12 секций с title и content. Английский текст переведён из CLIENT_CONTENT.md (раздел "Условия использования"), русский взят дословно. `npm run build` и `npm run lint` проходят без ошибок.
+
+Used as-is / edited manually / rejected: used as-is
+
+What I learned: terms page — reuses privacy/cookie-policy паттерн (sectionKeys, split/dedup рендеринг); 12 секций, больше чем privacy/cookie (10 каждая); namespace legal.terms; company information (section 2) не содержит \n в content, поэтому отображается одним параграфом без списков
+
+Model used: big-pickle
+
+Instrument used: OpenCode
