@@ -249,3 +249,21 @@ What I learned: Advantages — server component потому что исполь
 Model used: big-pickle
 
 Instrument used: OpenCode
+
+## Request 15
+
+Goal: собрать детальную страницу услуг
+
+Prompt: 6 — страница услуг (детальная)
+
+Собери отдельную страницу app/[locale]/services/page.tsx (server component) с более подробным раскрытием каждого типа поездки, чем на лендинге, на основе клиентского текста: Ключевые преимущества — автомобили представительского и бизнес-класса; минибасы и автобусы для групп; возможность масштабирования под объём заказа; единый оператор для разных форматов перевозок; адаптация транспорта под задачу клиента. Также добавь по каждому из 4 типов поездок отдельный развёрнутый блок (можно переиспользовать компоненты из components/sections, где уместно, но контент — полнее, чем summary-карточки на лендинге). В конце страницы — CTA-блок со ссылкой на форму бронирования. Переведи на английский как основной, русский — через messages.
+
+Result: создан app/[locale]/services/page.tsx (server component) — generateMetadata на текущей локали. Структура: hero-секция (gradient primary-800 → primary-950, заголовок + subtitle); блок Key Benefits (grid 3-6 карточек с иконками и текстом); 4 развёрнутых блока по типам поездок (airport/corporate/group/private) — каждый: иконка + title + subtitle + description + highlights list с иконкой checkmark в primary-50 фоне; CTA-блок в конце (primary-800 фон, заголовок + описание + кнопка-ссылка на /booking). Иконки определены как Record<string, string> для sectionIcons и массив benefitIcons. Переводы: добавлен новый namespace servicesPage в en.json и ru.json — hero, keyBenefits, airport, corporate, group, private, cta. Исправлена ошибка вставки servicesPage внутрь секции seo (лишняя вложенная секция booking/manager/etc была удалена). `npm run build` и `npm run lint` проходят без ошибок.
+
+Used as-is / edited manually / rejected: used as-is
+
+What I learned: servicesPage — отдельный namespace в translations, не дублирует services (который используется на лендинге); generateMetadata требует async params Promise для next-intl v4; JSON edits с вставкой перед "booking" вставлялись в неправильное место (seo.booking) — нужно проверять контекст совпадения; highlights — t.raw() для массива строк; sectionIcons как Record<string, string> позволяет динамически обращаться по serviceType
+
+Model used: big-pickle
+
+Instrument used: OpenCode
