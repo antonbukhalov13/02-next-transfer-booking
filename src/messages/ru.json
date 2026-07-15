@@ -1,1 +1,277 @@
-{}
+{
+  "header": {
+    "logo": "LONDON ROUTE TRANSFERS",
+    "nav": {
+      "home": "TODO",
+      "about": "TODO",
+      "services": "TODO",
+      "advantages": "TODO",
+      "contacts": "TODO",
+      "booking": "TODO"
+    }
+  },
+  "hero": {
+    "title": "TODO",
+    "subtitle": "TODO",
+    "description": "TODO",
+    "cta": "TODO",
+    "note": "TODO"
+  },
+  "about": {
+    "title": "TODO",
+    "subtitle": "TODO",
+    "paragraph1": "TODO",
+    "paragraph2": "TODO",
+    "paragraph3": "TODO"
+  },
+  "services": {
+    "title": "TODO",
+    "subtitle": "TODO",
+    "airport": {
+      "title": "TODO",
+      "description": "TODO",
+      "features": ["TODO", "TODO", "TODO"]
+    },
+    "corporate": {
+      "title": "TODO",
+      "description": "TODO",
+      "features": ["TODO", "TODO"]
+    },
+    "group": {
+      "title": "TODO",
+      "description": "TODO",
+      "features": ["TODO", "TODO"]
+    },
+    "private": {
+      "title": "TODO",
+      "description": "TODO",
+      "features": ["TODO", "TODO"]
+    },
+    "keyBenefits": {
+      "title": "TODO",
+      "items": ["TODO", "TODO", "TODO", "TODO", "TODO"]
+    }
+  },
+  "advantages": {
+    "title": "TODO",
+    "subtitle": "TODO",
+    "description": "TODO",
+    "whoWeServe": {
+      "title": "TODO",
+      "privateClients": "TODO",
+      "corporateClients": "TODO",
+      "educational": "TODO",
+      "tourGroups": "TODO",
+      "eventOrganizers": "TODO"
+    },
+    "whyChooseUs": {
+      "title": "TODO",
+      "items": ["TODO", "TODO", "TODO", "TODO", "TODO", "TODO", "TODO"]
+    }
+  },
+  "booking": {
+    "title": "TODO",
+    "form": {
+      "firstName": "TODO",
+      "lastName": "TODO",
+      "company": "TODO",
+      "phone": "TODO",
+      "email": "TODO",
+      "serviceType": "TODO",
+      "serviceOptions": {
+        "airport": "TODO",
+        "corporate": "TODO",
+        "group": "TODO",
+        "private": "TODO"
+      },
+      "pickupAddress": "TODO",
+      "destination": "TODO",
+      "date": "TODO",
+      "time": "TODO",
+      "passengers": "TODO",
+      "airportMeetAndGreet": "TODO",
+      "meetGreetOptions": {
+        "yes": "TODO",
+        "no": "TODO"
+      },
+      "comment": "TODO",
+      "consent": "TODO",
+      "submit": "TODO"
+    },
+    "privacy": {
+      "text": "TODO"
+    },
+    "states": {
+      "submitting": "TODO",
+      "success": "TODO",
+      "successMessage": "TODO",
+      "error": "TODO",
+      "errorMessage": "TODO"
+    }
+  },
+  "validation": {
+    "required": "TODO",
+    "email": "TODO",
+    "minPassengers": "TODO",
+    "consent": "TODO"
+  },
+  "manager": {
+    "title": "TODO",
+    "filters": {
+      "searchPlaceholder": "TODO",
+      "statusFilter": "TODO",
+      "allStatuses": "TODO"
+    },
+    "status": {
+      "pending": "TODO",
+      "confirmed": "TODO",
+      "completed": "TODO",
+      "cancelled": "TODO"
+    },
+    "emptyState": {
+      "title": "TODO",
+      "description": "TODO",
+      "resetFilters": "TODO"
+    },
+    "columns": {
+      "client": "TODO",
+      "service": "TODO",
+      "route": "TODO",
+      "dateTime": "TODO",
+      "passengers": "TODO",
+      "status": "TODO",
+      "notes": "TODO"
+    }
+  },
+  "legal": {
+    "privacy": {
+      "title": "TODO",
+      "sections": {
+        "1": { "title": "TODO", "content": "TODO" },
+        "2": { "title": "TODO", "content": "TODO" },
+        "3": { "title": "TODO", "content": "TODO" },
+        "4": { "title": "TODO", "content": "TODO" },
+        "5": { "title": "TODO", "content": "TODO" },
+        "6": { "title": "TODO", "content": "TODO" },
+        "7": { "title": "TODO", "content": "TODO" },
+        "8": { "title": "TODO", "content": "TODO" },
+        "9": { "title": "TODO", "content": "TODO" },
+        "10": { "title": "TODO", "content": "TODO" }
+      }
+    },
+    "cookiePolicy": {
+      "title": "TODO",
+      "sections": {
+        "1": { "title": "TODO", "content": "TODO" },
+        "2": { "title": "TODO", "content": "TODO" },
+        "3": { "title": "TODO", "content": "TODO" },
+        "4": { "title": "TODO", "content": "TODO" },
+        "5": { "title": "TODO", "content": "TODO" },
+        "6": { "title": "TODO", "content": "TODO" },
+        "7": { "title": "TODO", "content": "TODO" },
+        "8": { "title": "TODO", "content": "TODO" },
+        "9": { "title": "TODO", "content": "TODO" },
+        "10": { "title": "TODO", "content": "TODO" }
+      }
+    },
+    "terms": {
+      "title": "TODO",
+      "sections": {
+        "1": { "title": "TODO", "content": "TODO" },
+        "2": { "title": "TODO", "content": "TODO" },
+        "3": { "title": "TODO", "content": "TODO" },
+        "4": { "title": "TODO", "content": "TODO" },
+        "5": { "title": "TODO", "content": "TODO" },
+        "6": { "title": "TODO", "content": "TODO" },
+        "7": { "title": "TODO", "content": "TODO" },
+        "8": { "title": "TODO", "content": "TODO" },
+        "9": { "title": "TODO", "content": "TODO" },
+        "10": { "title": "TODO", "content": "TODO" },
+        "11": { "title": "TODO", "content": "TODO" },
+        "12": { "title": "TODO", "content": "TODO" }
+      }
+    },
+    "transportTerms": {
+      "title": "TODO",
+      "sections": {
+        "1": { "title": "TODO", "content": "TODO" },
+        "2": { "title": "TODO", "content": "TODO" },
+        "3": { "title": "TODO", "content": "TODO" },
+        "4": { "title": "TODO", "content": "TODO" },
+        "5": { "title": "TODO", "content": "TODO" },
+        "6": { "title": "TODO", "content": "TODO" },
+        "7": { "title": "TODO", "content": "TODO" },
+        "8": { "title": "TODO", "content": "TODO" },
+        "9": { "title": "TODO", "content": "TODO" },
+        "10": { "title": "TODO", "content": "TODO" },
+        "11": { "title": "TODO", "content": "TODO" },
+        "12": { "title": "TODO", "content": "TODO" },
+        "13": { "title": "TODO", "content": "TODO" },
+        "14": { "title": "TODO", "content": "TODO" },
+        "15": { "title": "TODO", "content": "TODO" },
+        "16": { "title": "TODO", "content": "TODO" },
+        "17": { "title": "TODO", "content": "TODO" },
+        "18": { "title": "TODO", "content": "TODO" }
+      }
+    }
+  },
+  "footer": {
+    "companyName": "LONDON ROUTE TRANSFERS LTD",
+    "companyType": "TODO",
+    "companyNumber": "TODO",
+    "registeredOffice": "TODO",
+    "vatNumber": "TODO",
+    "legalInfo": "TODO",
+    "documents": {
+      "privacy": "TODO",
+      "cookies": "TODO",
+      "terms": "TODO",
+      "transportTerms": "TODO"
+    },
+    "contacts": {
+      "title": "TODO",
+      "email": "TODO",
+      "phone": "TODO"
+    },
+    "copyright": "TODO"
+  },
+  "common": {
+    "learnMore": "TODO",
+    "backToHome": "TODO",
+    "loading": "TODO"
+  },
+  "seo": {
+    "home": {
+      "title": "TODO",
+      "description": "TODO"
+    },
+    "services": {
+      "title": "TODO",
+      "description": "TODO"
+    },
+    "booking": {
+      "title": "TODO",
+      "description": "TODO"
+    },
+    "manager": {
+      "title": "TODO",
+      "description": "TODO"
+    },
+    "privacy": {
+      "title": "TODO",
+      "description": "TODO"
+    },
+    "cookiePolicy": {
+      "title": "TODO",
+      "description": "TODO"
+    },
+    "terms": {
+      "title": "TODO",
+      "description": "TODO"
+    },
+    "transportTerms": {
+      "title": "TODO",
+      "description": "TODO"
+    }
+  }
+}
