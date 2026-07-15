@@ -308,7 +308,7 @@ Instrument used: OpenCode
 
 Goal: собрать страницу менеджера со списком бронирований
 
-Prompt: 8.1 — страница менеджера: список на mock-данных
+Prompt: 8 — страница менеджера app/[locale]/manager/page.tsx
 
 Собери app/[locale]/manager/page.tsx (server-обёртка с generateMetadata-заглушкой) и components/manager/BookingsList.tsx (client component) — рендерит список бронирований из lib/mock-data.ts. Каждая запись показывает: имя клиента (и компанию, если есть), тип услуги, маршрут (pickup → destination), дату и время, количество пассажиров, статус — визуально отличимый бейдж с цветом под каждый статус (pending / confirmed / completed / cancelled). Список должен читаться как рабочий внутренний экран менеджера, а не как список карточек лендинга — более компактно и информативно (таблица или плотный список). Список бронирований не связан с формой бронирования — используется отдельный статичный массив.
 
@@ -317,6 +317,24 @@ Result: создан app/[locale]/manager/page.tsx (server component) — genera
 Used as-is / edited manually / rejected: used as-is
 
 What I learned: manager page — server component (generateMetadata) + client component (BookingsList); таблица (table) лучше плотного списка для внутреннего экрана менеджера — компактнее и информативнее; responsive: hidden/table-cell по breakpoints (sm/md/lg) для адаптивности; statusStyles как Record<BookingStatus, string> для цветовых бейджей; поиск по нескольким полям через || цепочку; mock data — отдельный статичный массив, не связан с формой бронирования
+
+Model used: big-pickle
+
+Instrument used: OpenCode
+
+## Request 19
+
+Goal: собрать страницу Политики конфиденциальности
+
+Prompt: 9.1 — Privacy Policy
+
+Собери app/[locale]/privacy/page.tsx (server component) с полным текстом Политики конфиденциальности из клиентского текста (раздел "Политика конфиденциальности" в исходном документе, все 10 пунктов: общая информация, какие данные собираем, цели обработки, правовые основания, передача третьим лицам, хранение данных, права пользователя, безопасность данных, контакт по вопросам данных, изменения политики). Структурируй по заголовкам разделов, используй списки там, где перечисления в исходнике. Переведи на английский как основной язык сайта, добавь русский вариант через messages. Ничего не сокращай, не пересказывай и не добавляй от себя — только перевод исходного текста.
+
+Result: обновлён app/[locale]/privacy/page.tsx (server component) — generateMetadata на текущей локали с namespace legal.privacy. Структура: h1 заголовок, цикл по sectionKeys (1-10), каждый раздел: h2 заголовок + контент. Контент парсится по \n (split + filter Boolean), абзацы рендерятся как <p>, строки начинающиеся с "- " — как <ul> с <li> (deduplicate через filter). Заполнены translations: legal.privacy в en.json и ru.json — все 10 секций с title и content. Английский текст переведён из CLIENT_CONTENT.md, русский взят дословно. `npm run build` и `npm run lint` проходят без ошибок.
+
+Used as-is / edited manually / rejected: used as-is
+
+What I learned: legal pages — server components (generateMetadata); контент в переводах хранится с \n разделителями, парсится при рендере (split("\n")); списки из "-" префиксов дедуплицируются (arr.indexOf(p) === i) чтобы не рендерить <ul> на каждой строке; generateMetadata берёт description из первой секции; sectionKeys as const для типобезопасного итерирования
 
 Model used: big-pickle
 
