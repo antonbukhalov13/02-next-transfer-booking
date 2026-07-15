@@ -1,10 +1,12 @@
+import { ServiceType } from "./services";
+
 export type BookingStatus = "pending" | "confirmed" | "completed" | "cancelled";
 
 export interface MockBooking {
   id: string;
   clientName: string;
   company?: string;
-  serviceType: string;
+  serviceType: ServiceType;
   pickup: string;
   destination: string;
   date: string;

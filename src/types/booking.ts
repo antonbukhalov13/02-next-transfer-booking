@@ -9,10 +9,10 @@ export interface BookingFormData {
   serviceType: ServiceType;
   pickupAddress: string;
   destination: string;
-  travelDate: string;
-  pickupTime: string;
+  date: string;
+  time: string;
   passengers: number;
-  airportMeetGreet: boolean;
-  comments?: string;
+  airportMeetAndGreet: boolean;
+  comment?: string;
   consent: boolean;
 }
