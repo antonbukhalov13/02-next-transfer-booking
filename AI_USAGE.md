@@ -51,3 +51,21 @@ What I learned: в next-intl v4 (4.13.2) createMiddleware — default export, н
 Model used: big-pickle
 
 Instrument used: OpenCode
+
+## Request 4
+
+Goal: настроить базовые глобальные стили Tailwind v4
+
+Prompt: 1.3 — базовые стили Tailwind v4
+
+Настрой базовые глобальные стили: файл с :root CSS-переменными (цветовая палитра — сдержанная, подходящая транспортной компании представительского уровня: тёмно-синий/графитовый + акцентный цвет, без ярких кислотных тонов), системный шрифтовой стек без подключения внешних веб-шрифтов, переменные для ширины контейнера и базовых отступов секций. Глобальные стили body (шрифт, размер, цвет текста, фон). Секции и компоненты страниц на этом шаге не создавай — только глобальная база.
+
+Result: обновлён src/app/globals.css. Добавлен @theme-блок Tailwind v4 с кастомными токенами: цветовая палитра primary (тёмно-синий, 11 оттенков от #f0f4f8 до #0a1929), accent (тёплый оранжевый, 10 оттенков), neutral (серый, 10 оттенков). Системный шрифтовой стек --font-sans (apple, Segoe UI, Roboto, Helvetica, Arial). Переменные контейнеров --container-sm/md/lg/xl (640-1280px). Переменные секций --spacing-section (5rem) и --spacing-section-sm (3rem). Глобальные стили body: font-family, size 1rem, line-height 1.6, цвет primary-900, фон neutral-50, font-smoothing. `npm run build` и `npm run lint` проходят без ошибок.
+
+Used as-is / edited manually / rejected: used as-is
+
+What I learned: в Tailwind v4 кастомные тематические токены объявляются через @theme-блок в CSS, а не через tailwind.config.js как в v3; цветовые палитры сгенерированы по логике Material Design (50-900), accent выбран тёплый оранжевый — контрастный к тёмно-синему, не кислотный
+
+Model used: big-pickle
+
+Instrument used: OpenCode
