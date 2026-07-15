@@ -303,3 +303,21 @@ What I learned: React lint (react-hooks/purity) запрещает Math.random()
 Model used: big-pickle
 
 Instrument used: OpenCode
+
+## Request 18
+
+Goal: собрать страницу менеджера со списком бронирований
+
+Prompt: 8.1 — страница менеджера: список на mock-данных
+
+Собери app/[locale]/manager/page.tsx (server-обёртка с generateMetadata-заглушкой) и components/manager/BookingsList.tsx (client component) — рендерит список бронирований из lib/mock-data.ts. Каждая запись показывает: имя клиента (и компанию, если есть), тип услуги, маршрут (pickup → destination), дату и время, количество пассажиров, статус — визуально отличимый бейдж с цветом под каждый статус (pending / confirmed / completed / cancelled). Список должен читаться как рабочий внутренний экран менеджера, а не как список карточек лендинга — более компактно и информативно (таблица или плотный список). Список бронирований не связан с формой бронирования — используется отдельный статичный массив.
+
+Result: создан app/[locale]/manager/page.tsx (server component) — generateMetadata на текущей локали с namespace manager. Структура: h1 заголовок, рендер <BookingsList />. Создан components/manager/BookingsList.tsx ("use client") — useState для search и statusFilter. Фильтрация: поиск по clientName, company, pickup, destination (case-insensitive); фильтр по статусу (pending/confirmed/completed/cancelled/all). Таблица (table) с thead (columns: client, service, route, dateTime, passengers, status) и tbody. Client: clientName (font-medium) + company (text-xs, если есть) + serviceType (text-xs, md:hidden). Service: md:table-cell. Route: lg:table-cell, truncate, pickup → destination + notes. DateTime: sm:table-cell, date + time. Passengers: sm:table-cell, center. Status: бейдж с цветом (pending=amber, confirmed=blue, completed=green, cancelled=red) через statusStyles Record. Empty state: заголовок + описание + кнопка сброса фильтров. Responsive: route скрыта на <lg, service на <md, datetime/passengers на <sm. Переводы: manager.* заполнены в en.json и ru.json (title, filters, status labels, emptyState, columns, serviceTypes). `npm run build` и `npm run lint` проходят без ошибок.
+
+Used as-is / edited manually / rejected: used as-is
+
+What I learned: manager page — server component (generateMetadata) + client component (BookingsList); таблица (table) лучше плотного списка для внутреннего экрана менеджера — компактнее и информативнее; responsive: hidden/table-cell по breakpoints (sm/md/lg) для адаптивности; statusStyles как Record<BookingStatus, string> для цветовых бейджей; поиск по нескольким полям через || цепочку; mock data — отдельный статичный массив, не связан с формой бронирования
+
+Model used: big-pickle
+
+Instrument used: OpenCode
