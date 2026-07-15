@@ -124,31 +124,37 @@
     "consent": "You must consent to data processing to submit the form"
   },
   "manager": {
-    "title": "TODO",
+    "title": "Bookings Manager",
     "filters": {
-      "searchPlaceholder": "TODO",
-      "statusFilter": "TODO",
-      "allStatuses": "TODO"
+      "searchPlaceholder": "Search by client, company, or route...",
+      "statusFilter": "Status",
+      "allStatuses": "All Statuses"
     },
     "status": {
-      "pending": "TODO",
-      "confirmed": "TODO",
-      "completed": "TODO",
-      "cancelled": "TODO"
+      "pending": "Pending",
+      "confirmed": "Confirmed",
+      "completed": "Completed",
+      "cancelled": "Cancelled"
     },
     "emptyState": {
-      "title": "TODO",
-      "description": "TODO",
-      "resetFilters": "TODO"
+      "title": "No bookings found",
+      "description": "Try adjusting your search or filter criteria.",
+      "resetFilters": "Reset Filters"
     },
     "columns": {
-      "client": "TODO",
-      "service": "TODO",
-      "route": "TODO",
-      "dateTime": "TODO",
-      "passengers": "TODO",
-      "status": "TODO",
-      "notes": "TODO"
+      "client": "Client",
+      "service": "Service",
+      "route": "Route",
+      "dateTime": "Date & Time",
+      "passengers": "Pax",
+      "status": "Status",
+      "notes": "Notes"
+    },
+    "serviceTypes": {
+      "airport": "Airport",
+      "corporate": "Corporate",
+      "group": "Group",
+      "private": "Private"
     }
   },
   "legal": {

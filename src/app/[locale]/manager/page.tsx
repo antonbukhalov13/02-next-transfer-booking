@@ -1,5 +1,29 @@
-"use client";
+import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
+import BookingsList from "@/components/manager/BookingsList";
 
-export default function ManagerPage() {
-  return <main><h1>Manager</h1></main>;
+type Props = { params: Promise<{ locale: string }> };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "manager" });
+  return {
+    title: t("title"),
+    description: t("title"),
+  };
+}
+
+export default async function ManagerPage() {
+  const t = await getTranslations("manager");
+
+  return (
+    <main className="min-h-screen bg-neutral-50 py-12">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <h1 className="mb-8 text-3xl font-bold text-primary-900">
+          {t("title")}
+        </h1>
+        <BookingsList />
+      </div>
+    </main>
+  );
 }

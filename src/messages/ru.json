@@ -189,31 +189,37 @@
     "consent": "Необходимо согласие на обработку данных для отправки формы"
   },
   "manager": {
-    "title": "TODO",
+    "title": "Управление бронированиями",
     "filters": {
-      "searchPlaceholder": "TODO",
-      "statusFilter": "TODO",
-      "allStatuses": "TODO"
+      "searchPlaceholder": "Поиск по клиенту, компании или маршруту...",
+      "statusFilter": "Статус",
+      "allStatuses": "Все статусы"
     },
     "status": {
-      "pending": "TODO",
-      "confirmed": "TODO",
-      "completed": "TODO",
-      "cancelled": "TODO"
+      "pending": "Ожидает",
+      "confirmed": "Подтверждено",
+      "completed": "Завершено",
+      "cancelled": "Отменено"
     },
     "emptyState": {
-      "title": "TODO",
-      "description": "TODO",
-      "resetFilters": "TODO"
+      "title": "Бронирования не найдены",
+      "description": "Попробуйте изменить параметры поиска или фильтрации.",
+      "resetFilters": "Сбросить фильтры"
     },
     "columns": {
-      "client": "TODO",
-      "service": "TODO",
-      "route": "TODO",
-      "dateTime": "TODO",
-      "passengers": "TODO",
-      "status": "TODO",
-      "notes": "TODO"
+      "client": "Клиент",
+      "service": "Услуга",
+      "route": "Маршрут",
+      "dateTime": "Дата и время",
+      "passengers": "Пасс.",
+      "status": "Статус",
+      "notes": "Примечания"
+    },
+    "serviceTypes": {
+      "airport": "Аэропорт",
+      "corporate": "Корпоратив",
+      "group": "Группа",
+      "private": "Частная"
     }
   },
   "legal": {

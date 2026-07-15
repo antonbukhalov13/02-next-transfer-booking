@@ -1,0 +1,159 @@
+"use client";
+
+import { useState } from "react";
+import { useTranslations } from "next-intl";
+import { mockBookings } from "@/lib/mock-data";
+import type { BookingStatus } from "@/types/mock-bookings";
+
+const statusStyles: Record<BookingStatus, string> = {
+  pending: "bg-amber-100 text-amber-800 border-amber-200",
+  confirmed: "bg-blue-100 text-blue-800 border-blue-200",
+  completed: "bg-green-100 text-green-800 border-green-200",
+  cancelled: "bg-red-100 text-red-800 border-red-200",
+};
+
+export default function BookingsList() {
+  const t = useTranslations("manager");
+  const [search, setSearch] = useState("");
+  const [statusFilter, setStatusFilter] = useState<BookingStatus | "all">("all");
+
+  const filtered = mockBookings.filter((b) => {
+    const matchesSearch =
+      search === "" ||
+      b.clientName.toLowerCase().includes(search.toLowerCase()) ||
+      (b.company && b.company.toLowerCase().includes(search.toLowerCase())) ||
+      b.pickup.toLowerCase().includes(search.toLowerCase()) ||
+      b.destination.toLowerCase().includes(search.toLowerCase());
+
+    const matchesStatus =
+      statusFilter === "all" || b.status === statusFilter;
+
+    return matchesSearch && matchesStatus;
+  });
+
+  function handleResetFilters() {
+    setSearch("");
+    setStatusFilter("all");
+  }
+
+  return (
+    <div className="space-y-4">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+        <input
+          type="search"
+          placeholder={t("filters.searchPlaceholder")}
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="w-full rounded-lg border border-neutral-300 bg-white px-4 py-2.5 text-sm text-neutral-900 placeholder-neutral-400 transition-colors focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-200 sm:max-w-sm"
+        />
+        <select
+          value={statusFilter}
+          onChange={(e) =>
+            setStatusFilter(e.target.value as BookingStatus | "all")
+          }
+          className="rounded-lg border border-neutral-300 bg-white px-4 py-2.5 text-sm text-neutral-900 transition-colors focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-200"
+        >
+          <option value="all">{t("filters.allStatuses")}</option>
+          <option value="pending">{t("status.pending")}</option>
+          <option value="confirmed">{t("status.confirmed")}</option>
+          <option value="completed">{t("status.completed")}</option>
+          <option value="cancelled">{t("status.cancelled")}</option>
+        </select>
+      </div>
+
+      {filtered.length === 0 ? (
+        <div className="rounded-xl border border-neutral-200 bg-white py-12 text-center">
+          <p className="text-lg font-medium text-neutral-900">
+            {t("emptyState.title")}
+          </p>
+          <p className="mt-1 text-sm text-neutral-500">
+            {t("emptyState.description")}
+          </p>
+          <button
+            type="button"
+            onClick={handleResetFilters}
+            className="mt-4 rounded-lg bg-primary-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-primary-700"
+          >
+            {t("emptyState.resetFilters")}
+          </button>
+        </div>
+      ) : (
+        <div className="overflow-x-auto rounded-xl border border-neutral-200 bg-white">
+          <table className="min-w-full text-left text-sm">
+            <thead className="border-b border-neutral-200 bg-neutral-50">
+              <tr>
+                <th className="px-4 py-3 font-medium text-neutral-700">
+                  {t("columns.client")}
+                </th>
+                <th className="hidden px-4 py-3 font-medium text-neutral-700 md:table-cell">
+                  {t("columns.service")}
+                </th>
+                <th className="hidden px-4 py-3 font-medium text-neutral-700 lg:table-cell">
+                  {t("columns.route")}
+                </th>
+                <th className="hidden px-4 py-3 font-medium text-neutral-700 sm:table-cell">
+                  {t("columns.dateTime")}
+                </th>
+                <th className="hidden px-4 py-3 font-medium text-neutral-700 sm:table-cell">
+                  {t("columns.passengers")}
+                </th>
+                <th className="px-4 py-3 font-medium text-neutral-700">
+                  {t("columns.status")}
+                </th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-neutral-100">
+              {filtered.map((booking) => (
+                <tr
+                  key={booking.id}
+                  className="transition-colors hover:bg-neutral-50"
+                >
+                  <td className="px-4 py-3">
+                    <div className="font-medium text-neutral-900">
+                      {booking.clientName}
+                    </div>
+                    {booking.company && (
+                      <div className="text-xs text-neutral-500">
+                        {booking.company}
+                      </div>
+                    )}
+                    <div className="mt-1 text-xs text-neutral-400 md:hidden">
+                      {t("serviceTypes." + booking.serviceType)}
+                    </div>
+                  </td>
+                  <td className="hidden px-4 py-3 text-neutral-600 md:table-cell">
+                    {t("serviceTypes." + booking.serviceType)}
+                  </td>
+                  <td className="hidden max-w-[280px] truncate px-4 py-3 text-neutral-600 lg:table-cell">
+                    {booking.pickup} → {booking.destination}
+                    {booking.notes && (
+                      <div className="mt-0.5 text-xs text-neutral-400 truncate">
+                        {booking.notes}
+                      </div>
+                    )}
+                  </td>
+                  <td className="hidden whitespace-nowrap px-4 py-3 text-neutral-600 sm:table-cell">
+                    <div>{booking.date}</div>
+                    <div className="text-xs text-neutral-400">
+                      {booking.time}
+                    </div>
+                  </td>
+                  <td className="hidden px-4 py-3 text-center text-neutral-600 sm:table-cell">
+                    {booking.passengers}
+                  </td>
+                  <td className="px-4 py-3">
+                    <span
+                      className={`inline-block rounded-full border px-2.5 py-0.5 text-xs font-medium ${statusStyles[booking.status]}`}
+                    >
+                      {t("status." + booking.status)}
+                    </span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </div>
+  );
+}
