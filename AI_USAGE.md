@@ -429,3 +429,21 @@ What I learned: Header — server component с getTranslations, burger menu вы
 Model used: big-pickle
 
 Instrument used: OpenCode
+
+## Request 25
+
+Goal: добавить лёгкие анимации через CSS transitions
+
+Prompt: 12 — анимации
+
+Добавь уместные, лёгкие анимации через CSS transitions или framer-motion (на выбор, но не смешивай оба подхода без причины): плавное появление секций лендинга при скролле (fade/slide-in), переходы hover-состояний на карточках услуг/преимуществ и кнопках, плавное появление/исчезновение success-состояния формы бронирования, лёгкая анимация при переключении фильтров на странице менеджера (например fade при обновлении списка). Не перегружай интерфейс — анимации должны быть короткими (150-300ms) и не мешать взаимодействию.
+
+Result: создан components/ui/FadeIn.tsx (client) — IntersectionObserver wrapper, opacity-0→100, translate-y-4→0, duration-500, threshold 0.15. Обновлён app/[locale]/page.tsx — About, ServicesSummary, Advantages обёрнуты в <FadeIn> с delay 100ms для каскадного эффекта. Добавлен @keyframes fade-in-up в globals.css (opacity 0→1, translateY 8px→0, scale 0.98→1, duration 0.3s). Обновлён BookingForm.tsx — success card и error alert получили класс animate-fade-in-up. Обновлён BookingsList.tsx — результаты обёрнуты в div key={search-statusFilter} с animate-fade-in-up для fade при смене фильтров. Hover transitions на карточках/кнопках уже были через Tailwind (transition-all, hover:-translate-y-1, hover:shadow-md). `npm run build` и `npm run lint` проходят без ошибок.
+
+Used as-is / edited manually / rejected: used as-is
+
+What I learned: CSS-only анимации через IntersectionObserver + Tailwind классы — легче чем framer-motion, zero dependencies; FadeIn как reusable client wrapper; key prop на контейнере с filter state для remount + animation при смене фильтров; @keyframes fade-in-up для mount анимаций (success/error states); Hero не нуждается в scroll animation — виден сразу при загрузке
+
+Model used: big-pickle
+
+Instrument used: OpenCode
