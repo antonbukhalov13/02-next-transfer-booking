@@ -46,7 +46,7 @@ export default async function ServicesPage() {
     <main className="min-h-screen">
       <section className="bg-gradient-to-br from-primary-800 to-primary-950 py-20 text-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h1 className="mb-4 text-4xl font-bold sm:text-5xl">
+          <h1 className="mb-4 text-3xl font-bold sm:text-4xl lg:text-5xl">
             {t("hero.title")}
           </h1>
           <p className="max-w-3xl text-lg text-primary-100">

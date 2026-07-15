@@ -78,81 +78,128 @@ export default function BookingsList() {
           </button>
         </div>
       ) : (
-        <div className="overflow-x-auto rounded-xl border border-neutral-200 bg-white">
-          <table className="min-w-full text-left text-sm">
-            <thead className="border-b border-neutral-200 bg-neutral-50">
-              <tr>
-                <th className="px-4 py-3 font-medium text-neutral-700">
-                  {t("columns.client")}
-                </th>
-                <th className="hidden px-4 py-3 font-medium text-neutral-700 md:table-cell">
-                  {t("columns.service")}
-                </th>
-                <th className="hidden px-4 py-3 font-medium text-neutral-700 lg:table-cell">
-                  {t("columns.route")}
-                </th>
-                <th className="hidden px-4 py-3 font-medium text-neutral-700 sm:table-cell">
-                  {t("columns.dateTime")}
-                </th>
-                <th className="hidden px-4 py-3 font-medium text-neutral-700 sm:table-cell">
-                  {t("columns.passengers")}
-                </th>
-                <th className="px-4 py-3 font-medium text-neutral-700">
-                  {t("columns.status")}
-                </th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-neutral-100">
-              {filtered.map((booking) => (
-                <tr
-                  key={booking.id}
-                  className="transition-colors hover:bg-neutral-50"
-                >
-                  <td className="px-4 py-3">
-                    <div className="font-medium text-neutral-900">
+        <>
+          <div className="space-y-3 md:hidden">
+            {filtered.map((booking) => (
+              <div
+                key={booking.id}
+                className="rounded-xl border border-neutral-200 bg-white p-4"
+              >
+                <div className="mb-2 flex items-start justify-between gap-2">
+                  <div>
+                    <p className="font-medium text-neutral-900">
                       {booking.clientName}
-                    </div>
+                    </p>
                     {booking.company && (
-                      <div className="text-xs text-neutral-500">
+                      <p className="text-xs text-neutral-500">
                         {booking.company}
-                      </div>
+                      </p>
                     )}
-                    <div className="mt-1 text-xs text-neutral-400 md:hidden">
-                      {t("serviceTypes." + booking.serviceType)}
-                    </div>
-                  </td>
-                  <td className="hidden px-4 py-3 text-neutral-600 md:table-cell">
+                  </div>
+                  <span
+                    className={`shrink-0 rounded-full border px-2.5 py-0.5 text-xs font-medium ${statusStyles[booking.status]}`}
+                  >
+                    {t("status." + booking.status)}
+                  </span>
+                </div>
+                <div className="space-y-1 text-sm text-neutral-600">
+                  <p className="text-xs font-medium text-neutral-400">
                     {t("serviceTypes." + booking.serviceType)}
-                  </td>
-                  <td className="hidden max-w-[280px] truncate px-4 py-3 text-neutral-600 lg:table-cell">
+                  </p>
+                  <p>
                     {booking.pickup} → {booking.destination}
-                    {booking.notes && (
-                      <div className="mt-0.5 text-xs text-neutral-400 truncate">
-                        {booking.notes}
-                      </div>
-                    )}
-                  </td>
-                  <td className="hidden whitespace-nowrap px-4 py-3 text-neutral-600 sm:table-cell">
-                    <div>{booking.date}</div>
-                    <div className="text-xs text-neutral-400">
-                      {booking.time}
-                    </div>
-                  </td>
-                  <td className="hidden px-4 py-3 text-center text-neutral-600 sm:table-cell">
-                    {booking.passengers}
-                  </td>
-                  <td className="px-4 py-3">
-                    <span
-                      className={`inline-block rounded-full border px-2.5 py-0.5 text-xs font-medium ${statusStyles[booking.status]}`}
-                    >
-                      {t("status." + booking.status)}
+                  </p>
+                  {booking.notes && (
+                    <p className="text-xs text-neutral-400 truncate">
+                      {booking.notes}
+                    </p>
+                  )}
+                  <div className="flex items-center gap-4 pt-1 text-xs text-neutral-500">
+                    <span>
+                      {booking.date} {booking.time}
                     </span>
-                  </td>
+                    <span>
+                      {booking.passengers} {t("columns.passengers").toLowerCase()}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="hidden overflow-x-auto rounded-xl border border-neutral-200 bg-white md:block">
+            <table className="min-w-full text-left text-sm">
+              <thead className="border-b border-neutral-200 bg-neutral-50">
+                <tr>
+                  <th className="px-4 py-3 font-medium text-neutral-700">
+                    {t("columns.client")}
+                  </th>
+                  <th className="px-4 py-3 font-medium text-neutral-700">
+                    {t("columns.service")}
+                  </th>
+                  <th className="px-4 py-3 font-medium text-neutral-700">
+                    {t("columns.route")}
+                  </th>
+                  <th className="px-4 py-3 font-medium text-neutral-700">
+                    {t("columns.dateTime")}
+                  </th>
+                  <th className="px-4 py-3 font-medium text-neutral-700">
+                    {t("columns.passengers")}
+                  </th>
+                  <th className="px-4 py-3 font-medium text-neutral-700">
+                    {t("columns.status")}
+                  </th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody className="divide-y divide-neutral-100">
+                {filtered.map((booking) => (
+                  <tr
+                    key={booking.id}
+                    className="transition-colors hover:bg-neutral-50"
+                  >
+                    <td className="px-4 py-3">
+                      <div className="font-medium text-neutral-900">
+                        {booking.clientName}
+                      </div>
+                      {booking.company && (
+                        <div className="text-xs text-neutral-500">
+                          {booking.company}
+                        </div>
+                      )}
+                    </td>
+                    <td className="px-4 py-3 text-neutral-600">
+                      {t("serviceTypes." + booking.serviceType)}
+                    </td>
+                    <td className="max-w-[280px] truncate px-4 py-3 text-neutral-600">
+                      {booking.pickup} → {booking.destination}
+                      {booking.notes && (
+                        <div className="mt-0.5 truncate text-xs text-neutral-400">
+                          {booking.notes}
+                        </div>
+                      )}
+                    </td>
+                    <td className="whitespace-nowrap px-4 py-3 text-neutral-600">
+                      <div>{booking.date}</div>
+                      <div className="text-xs text-neutral-400">
+                        {booking.time}
+                      </div>
+                    </td>
+                    <td className="px-4 py-3 text-center text-neutral-600">
+                      {booking.passengers}
+                    </td>
+                    <td className="px-4 py-3">
+                      <span
+                        className={`inline-block rounded-full border px-2.5 py-0.5 text-xs font-medium ${statusStyles[booking.status]}`}
+                      >
+                        {t("status." + booking.status)}
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </>
       )}
     </div>
   );
