@@ -7,7 +7,8 @@
       "services": "Services",
       "advantages": "Advantages",
       "contacts": "Contacts",
-      "booking": "Book Now"
+      "booking": "Book Now",
+      "switchLanguage": "Switch language"
     }
   },
   "hero": {

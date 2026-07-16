@@ -42,10 +42,10 @@ export default async function Header() {
           >
             {t("nav.booking")}
           </Link>
-          <LanguageSwitcher label={t("nav.booking")} />
+          <LanguageSwitcher label={t("nav.switchLanguage")} />
         </nav>
 
-        <MobileMenu navItems={resolvedNavItems} bookingHref={`/${locale}/booking`} bookingLabel={t("nav.booking")} />
+        <MobileMenu navItems={resolvedNavItems} bookingHref={`/${locale}/booking`} bookingLabel={t("nav.booking")} languageSwitchLabel={t("nav.switchLanguage")} />
       </div>
     </header>
   );

@@ -11,10 +11,12 @@ export default function MobileMenu({
   navItems,
   bookingHref,
   bookingLabel,
+  languageSwitchLabel,
 }: {
   navItems: NavItem[];
   bookingHref: string;
   bookingLabel: string;
+  languageSwitchLabel: string;
 }) {
   const [open, setOpen] = useState(false);
   const t = useTranslations("mobileMenu");
@@ -60,7 +62,7 @@ export default function MobileMenu({
               {bookingLabel}
             </Link>
             <div className="mt-3 border-t border-neutral-100 pt-3">
-              <LanguageSwitcher label={bookingLabel} />
+              <LanguageSwitcher label={languageSwitchLabel} />
             </div>
           </nav>
         </div>
