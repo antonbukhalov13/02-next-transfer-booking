@@ -1,12 +1,20 @@
-import { getTranslations } from "next-intl/server";
+import { getTranslations, getLocale } from "next-intl/server";
 import Link from "next/link";
 import { serviceSummaryCards } from "@/lib/services-data";
 
+const accentColors = [
+  "from-accent-500 to-accent-600",
+  "from-primary-600 to-primary-700",
+  "from-primary-500 to-primary-600",
+  "from-accent-400 to-accent-500",
+];
+
 export default async function ServicesSummary() {
   const t = await getTranslations("services");
+  const locale = await getLocale();
 
   return (
-    <section id="services" className="bg-neutral-50 py-20">
+    <section id="services" className="scroll-mt-20 bg-white py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-16 text-center">
           <h2 className="mb-4 text-3xl font-bold text-primary-900 sm:text-4xl">
@@ -17,36 +25,28 @@ export default async function ServicesSummary() {
           </p>
         </div>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {serviceSummaryCards.map((card) => (
+        <div className="grid gap-6 sm:grid-cols-2">
+          {serviceSummaryCards.map((card, idx) => (
             <Link
               key={card.serviceType}
-              href={card.href}
-              className="group rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-md"
+              href={`/${locale}${card.href}`}
+              className="group flex flex-col overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-md"
             >
-              <div
-                className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-primary-50 text-primary-600 transition-colors group-hover:bg-primary-600 group-hover:text-white"
-                dangerouslySetInnerHTML={{ __html: card.icon }}
-              />
-              <h3 className="mb-2 text-xl font-semibold text-primary-900">
-                {t(`${card.serviceType}.title`)}
-              </h3>
-              <p className="mb-4 text-neutral-600">
-                {t(`${card.serviceType}.description`)}
-              </p>
-              <ul className="space-y-1">
-                {(t.raw(`${card.serviceType}.features`) as string[]).map(
-                  (feature, idx) => (
-                    <li
-                      key={idx}
-                      className="flex items-center gap-2 text-sm text-neutral-500"
-                    >
-                      <span className="h-1 w-1 rounded-full bg-accent-500" />
-                      {feature}
-                    </li>
-                  )
-                )}
-              </ul>
+              <div className={`h-1.5 bg-gradient-to-r ${accentColors[idx]}`} />
+              <div className="flex flex-1 flex-col p-8">
+                <div className="mb-4 flex items-center gap-4">
+                  <div
+                    className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-primary-50 text-primary-600"
+                    dangerouslySetInnerHTML={{ __html: card.icon }}
+                  />
+                  <h3 className="text-xl font-semibold leading-snug text-primary-900">
+                    {t(`${card.serviceType}.title`)}
+                  </h3>
+                </div>
+                <p className="text-sm leading-relaxed text-neutral-600">
+                  {t(`${card.serviceType}.description`)}
+                </p>
+              </div>
             </Link>
           ))}
         </div>

@@ -6,10 +6,10 @@ import { mockBookings } from "@/lib/mock-data";
 import type { BookingStatus } from "@/types/mock-bookings";
 
 const statusStyles: Record<BookingStatus, string> = {
-  pending: "bg-amber-100 text-amber-800 border-amber-200",
-  confirmed: "bg-blue-100 text-blue-800 border-blue-200",
-  completed: "bg-green-100 text-green-800 border-green-200",
-  cancelled: "bg-red-100 text-red-800 border-red-200",
+  pending: "bg-accent-100 text-accent-800 border-accent-200",
+  confirmed: "bg-primary-100 text-primary-800 border-primary-200",
+  completed: "bg-primary-50 text-primary-600 border-primary-100",
+  cancelled: "bg-neutral-100 text-neutral-600 border-neutral-200",
 };
 
 export default function BookingsList() {
@@ -38,27 +38,29 @@ export default function BookingsList() {
 
   return (
     <div className="space-y-4">
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-        <input
-          type="search"
-          placeholder={t("filters.searchPlaceholder")}
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className="w-full rounded-lg border border-neutral-300 bg-white px-4 py-2.5 text-sm text-neutral-900 placeholder-neutral-400 transition-colors focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-200 sm:max-w-sm"
-        />
-        <select
-          value={statusFilter}
-          onChange={(e) =>
-            setStatusFilter(e.target.value as BookingStatus | "all")
-          }
-          className="rounded-lg border border-neutral-300 bg-white px-4 py-2.5 text-sm text-neutral-900 transition-colors focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-200"
-        >
-          <option value="all">{t("filters.allStatuses")}</option>
-          <option value="pending">{t("status.pending")}</option>
-          <option value="confirmed">{t("status.confirmed")}</option>
-          <option value="completed">{t("status.completed")}</option>
-          <option value="cancelled">{t("status.cancelled")}</option>
-        </select>
+      <div className="rounded-xl border border-neutral-200 bg-white p-4 shadow-sm sm:p-5">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+          <input
+            type="search"
+            placeholder={t("filters.searchPlaceholder")}
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="w-full rounded-lg border border-neutral-300 bg-neutral-50 px-4 py-2.5 text-sm text-neutral-900 placeholder-neutral-400 transition-colors focus:border-primary-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary-200 sm:max-w-sm"
+          />
+          <select
+            value={statusFilter}
+            onChange={(e) =>
+              setStatusFilter(e.target.value as BookingStatus | "all")
+            }
+            className="rounded-lg border border-neutral-300 bg-neutral-50 px-4 py-2.5 text-sm text-neutral-900 transition-colors focus:border-primary-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary-200"
+          >
+            <option value="all">{t("filters.allStatuses")}</option>
+            <option value="pending">{t("status.pending")}</option>
+            <option value="confirmed">{t("status.confirmed")}</option>
+            <option value="completed">{t("status.completed")}</option>
+            <option value="cancelled">{t("status.cancelled")}</option>
+          </select>
+        </div>
       </div>
 
       {filtered.length === 0 ? (
@@ -83,7 +85,7 @@ export default function BookingsList() {
             {filtered.map((booking) => (
               <div
                 key={booking.id}
-                className="rounded-xl border border-neutral-200 bg-white p-4"
+                className="rounded-xl border border-neutral-200 bg-white p-4 transition-colors hover:border-primary-200 hover:shadow-sm"
               >
                 <div className="mb-2 flex items-start justify-between gap-2">
                   <div>
@@ -152,10 +154,12 @@ export default function BookingsList() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-neutral-100">
-                {filtered.map((booking) => (
+                {filtered.map((booking, idx) => (
                   <tr
                     key={booking.id}
-                    className="transition-colors hover:bg-neutral-50"
+                    className={`transition-colors hover:bg-primary-50/50 ${
+                      idx % 2 === 1 ? "bg-neutral-50/50" : ""
+                    }`}
                   >
                     <td className="px-4 py-3">
                       <div className="font-medium text-neutral-900">

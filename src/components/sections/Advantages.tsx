@@ -34,59 +34,81 @@ export default async function Advantages() {
     },
   ];
 
+  const whoWeServeKeys = [
+    "privateClients",
+    "corporateClients",
+    "educational",
+    "tourGroups",
+    "eventOrganizers",
+  ] as const;
+
+  const descriptionParagraphs = t("description").split("\n\n");
+
   return (
-    <section id="advantages" className="bg-white py-20">
+    <section id="advantages" className="scroll-mt-20 bg-neutral-50 py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-16 text-center">
-          <h2 className="mb-4 text-3xl font-bold text-primary-900 sm:text-4xl">
+          <h2 className="mb-8 text-3xl font-bold text-primary-900 sm:text-4xl">
             {t("title")}
           </h2>
-          <p className="mx-auto max-w-2xl text-lg text-neutral-600">
-            {t("subtitle")}
-          </p>
+          <div className="mx-auto max-w-5xl space-y-4 text-lg text-neutral-600">
+            {descriptionParagraphs.map((p, i) => (
+              <p key={i}>{p}</p>
+            ))}
+          </div>
         </div>
 
         <div className="mb-16">
           <h3 className="mb-8 text-center text-2xl font-semibold text-primary-800">
-            {t("whyChooseUs.title")}
+            {t("whoWeServe.title")}
           </h3>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {advantagesList.map((advantage) => (
-              <div
-                key={advantage.translationKey}
-                className="flex items-start gap-4 rounded-xl border border-neutral-100 bg-neutral-50 p-6 transition-all hover:border-primary-200 hover:shadow-sm"
-              >
+          <div className="flex flex-wrap justify-center gap-4">
+            {whoWeServeKeys.map((client) => {
+              const text = t(`whoWeServe.${client}`);
+              const [label, ...rest] = text.split(": ");
+              return (
                 <div
-                  className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-primary-100 text-primary-600"
-                  dangerouslySetInnerHTML={{ __html: advantage.icon }}
-                />
-                <p className="text-neutral-700">
-                  {t(`whyChooseUs.items.${advantage.translationKey}`)}
-                </p>
-              </div>
-            ))}
+                  key={client}
+                  className="flex w-full items-start gap-3 rounded-xl border border-neutral-200 bg-white p-5 shadow-sm transition-all hover:border-primary-200 hover:shadow-md sm:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-0.667rem)]"
+                >
+                  <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-accent-500 text-white">
+                    <svg viewBox="0 0 20 20" fill="currentColor" className="h-4 w-4">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <div>
+                    <span className="block font-semibold text-primary-800">
+                      {label}
+                    </span>
+                    {rest.length > 0 && (
+                      <span className="text-sm text-neutral-600">
+                        {rest.join(": ")}
+                      </span>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
 
         <div>
           <h3 className="mb-8 text-center text-2xl font-semibold text-primary-800">
-            {t("whoWeServe.title")}
+            {t("whyChooseUs.title")}
           </h3>
           <div className="flex flex-wrap justify-center gap-4">
-            {(
-              [
-                "privateClients",
-                "corporateClients",
-                "educational",
-                "tourGroups",
-                "eventOrganizers",
-              ] as const
-            ).map((client) => (
+            {advantagesList.map((advantage) => (
               <div
-                key={client}
-                className="rounded-full border border-primary-200 bg-primary-50 px-6 py-3 text-primary-700 transition-all hover:bg-primary-600 hover:text-white"
+                key={advantage.translationKey}
+                className="flex w-full items-start gap-3 rounded-xl border border-neutral-200 bg-white p-5 shadow-sm transition-all hover:border-primary-200 hover:shadow-md sm:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-0.667rem)]"
               >
-                {t(`whoWeServe.${client}`)}
+                <div
+                  className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary-100 text-primary-600"
+                  dangerouslySetInnerHTML={{ __html: advantage.icon }}
+                />
+                <p className="text-sm leading-relaxed text-neutral-700">
+                  {t(`whyChooseUs.items.${advantage.translationKey}`)}
+                </p>
               </div>
             ))}
           </div>

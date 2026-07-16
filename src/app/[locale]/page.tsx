@@ -5,6 +5,7 @@ import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
 import ServicesSummary from "@/components/sections/ServicesSummary";
 import Advantages from "@/components/sections/Advantages";
+import Contacts from "@/components/sections/Contacts";
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -39,6 +40,9 @@ export default function HomePage() {
       </FadeIn>
       <FadeIn delay={100}>
         <Advantages />
+      </FadeIn>
+      <FadeIn delay={100}>
+        <Contacts />
       </FadeIn>
     </>
   );

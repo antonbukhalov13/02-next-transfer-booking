@@ -24,7 +24,7 @@ export const serviceSummaryCards: ServiceSummaryCard[] = [
   },
   {
     serviceType: "private",
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 17H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-1M12 15v4m-3-2h6"/></svg>`,
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s7-7.7 7-12.4A7 7 0 005 8.6C5 13.3 12 21 12 21zM9.5 8.5a2.5 2.5 0 105 0 2.5 2.5 0 00-5 0z"/></svg>`,
     href: "/services#private",
   },
 ];

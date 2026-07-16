@@ -27,7 +27,7 @@ export const mockBookings: MockBooking[] = [
   },
   {
     id: "3",
-    clientName: "David Chen",
+    clientName: "Yuki Tanaka",
     company: "TechVision Ltd",
     serviceType: "corporate",
     pickup: "Canary Wharf, London E14",
@@ -90,7 +90,7 @@ export const mockBookings: MockBooking[] = [
   },
   {
     id: "8",
-    clientName: "Sophie Anderson",
+    clientName: "Raj Patel",
     serviceType: "group",
     pickup: "Wembley Stadium, Olympic Way, Wembley HA9 0WS",
     destination: "221B Baker Street, Marylebone, London NW1 6XE",
@@ -115,7 +115,7 @@ export const mockBookings: MockBooking[] = [
   },
   {
     id: "10",
-    clientName: "Jennifer Martinez",
+    clientName: "Leila Mansour",
     serviceType: "private",
     pickup: "Harrods, 87-135 Brompton Road, Knightsbridge, London SW1X 7XL",
     destination: "Heathrow Terminal 3",

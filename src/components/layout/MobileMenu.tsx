@@ -1,20 +1,23 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import { useTranslations } from "next-intl";
+import Link from "next/link";
 import LanguageSwitcher from "./LanguageSwitcher";
 
-export default function MobileMenu() {
-  const t = useTranslations("header");
-  const [open, setOpen] = useState(false);
+type NavItem = { label: string; href: string };
 
-  const navItems = [
-    { key: "about", href: "/#about" },
-    { key: "services", href: "/services" },
-    { key: "advantages", href: "/#advantages" },
-    { key: "contacts", href: "/#contacts" },
-  ];
+export default function MobileMenu({
+  navItems,
+  bookingHref,
+  bookingLabel,
+}: {
+  navItems: NavItem[];
+  bookingHref: string;
+  bookingLabel: string;
+}) {
+  const [open, setOpen] = useState(false);
+  const t = useTranslations("mobileMenu");
 
   return (
     <div className="md:hidden">
@@ -23,7 +26,7 @@ export default function MobileMenu() {
         onClick={() => setOpen(!open)}
         className="inline-flex items-center justify-center rounded-md p-2 text-primary-700 transition-colors hover:bg-primary-50"
         aria-expanded={open}
-        aria-label={open ? "Close menu" : "Open menu"}
+        aria-label={open ? t("close") : t("open")}
       >
         {open ? (
           <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
@@ -41,23 +44,23 @@ export default function MobileMenu() {
           <nav className="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-4 sm:px-6">
             {navItems.map((item) => (
               <Link
-                key={item.key}
+                key={item.href}
                 href={item.href}
                 onClick={() => setOpen(false)}
                 className="rounded-lg px-3 py-2.5 text-sm font-medium text-primary-700 transition-colors hover:bg-primary-50 hover:text-accent-600"
               >
-                {t(`nav.${item.key}`)}
+                {item.label}
               </Link>
             ))}
             <Link
-              href="/booking"
+              href={bookingHref}
               onClick={() => setOpen(false)}
               className="mt-2 rounded-lg bg-accent-500 px-5 py-2.5 text-center text-sm font-semibold text-white transition-colors hover:bg-accent-600"
             >
-              {t("nav.booking")}
+              {bookingLabel}
             </Link>
             <div className="mt-3 border-t border-neutral-100 pt-3">
-              <LanguageSwitcher />
+              <LanguageSwitcher label={bookingLabel} />
             </div>
           </nav>
         </div>

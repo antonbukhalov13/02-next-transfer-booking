@@ -1,17 +1,23 @@
-import { getTranslations } from "next-intl/server";
+import { getTranslations, getLocale } from "next-intl/server";
 import Link from "next/link";
 import LanguageSwitcher from "./LanguageSwitcher";
 import MobileMenu from "./MobileMenu";
 
 export default async function Header() {
   const t = await getTranslations("header");
+  const locale = await getLocale();
 
   const navItems = [
-    { key: "about", href: "/#about" },
-    { key: "services", href: "/services" },
-    { key: "advantages", href: "/#advantages" },
-    { key: "contacts", href: "/#contacts" },
+    { key: "about", href: `/${locale}/#about` },
+    { key: "services", href: `/${locale}/#services` },
+    { key: "advantages", href: `/${locale}/#advantages` },
+    { key: "contacts", href: `/${locale}/#contacts` },
   ];
+
+  const resolvedNavItems = navItems.map((item) => ({
+    label: t(`nav.${item.key}`),
+    href: item.href,
+  }));
 
   return (
     <header className="sticky top-0 z-50 border-b border-neutral-200 bg-white/80 backdrop-blur-md">
@@ -21,25 +27,25 @@ export default async function Header() {
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">
-          {navItems.map((item) => (
+          {resolvedNavItems.map((item) => (
             <Link
-              key={item.key}
+              key={item.href}
               href={item.href}
               className="text-sm font-medium text-primary-700 transition-colors hover:text-accent-600"
             >
-              {t(`nav.${item.key}`)}
+              {item.label}
             </Link>
           ))}
           <Link
-            href="/booking"
+            href={`/${locale}/booking`}
             className="rounded-lg bg-accent-500 px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-accent-600"
           >
             {t("nav.booking")}
           </Link>
-          <LanguageSwitcher />
+          <LanguageSwitcher label={t("nav.booking")} />
         </nav>
 
-        <MobileMenu />
+        <MobileMenu navItems={resolvedNavItems} bookingHref={`/${locale}/booking`} bookingLabel={t("nav.booking")} />
       </div>
     </header>
   );

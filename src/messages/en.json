@@ -2,12 +2,12 @@
   "header": {
     "logo": "LONDON ROUTE TRANSFERS",
     "nav": {
-      "home": "TODO",
-      "about": "TODO",
-      "services": "TODO",
-      "advantages": "TODO",
-      "contacts": "TODO",
-      "booking": "TODO"
+      "home": "Home",
+      "about": "About",
+      "services": "Services",
+      "advantages": "Advantages",
+      "contacts": "Contacts",
+      "booking": "Book Now"
     }
   },
   "hero": {
@@ -29,56 +29,48 @@
     "subtitle": "We arrange travel in London and beyond — from individual transfers to group and corporate transport.",
     "airport": {
       "title": "Airport Transfers",
-      "description": "Transfers to Heathrow, Gatwick, Stansted, Luton and London City. Airport meet and greet, luggage assistance, flight time monitoring.",
-      "features": ["Heathrow, Gatwick, Stansted, Luton, London City", "Meet and greet at airport", "Luggage assistance"]
+      "description": "Transfers to Heathrow, Gatwick, Stansted, Luton and London City. Airport meet and greet, luggage assistance, flight time monitoring."
     },
     "corporate": {
       "title": "Corporate Transport",
-      "description": "Travel for employees and clients. Transport for business events and regular routes.",
-      "features": ["Employee and client transport", "Business events", "Regular routes"]
+      "description": "Travel for employees and clients. Transport for business events and regular routes."
     },
     "group": {
       "title": "Group Travel",
-      "description": "Minibuses and coaches for groups. Schools, tourists, corporate trips.",
-      "features": ["Minibuses and coaches", "Schools and universities", "Tour groups"]
+      "description": "Minibuses and coaches for groups. Schools, tourists, corporate trips."
     },
     "private": {
       "title": "Private Travel",
-      "description": "Weddings, events, city and long-distance travel.",
-      "features": ["Weddings and celebrations", "City travel", "Long-distance trips"]
-    },
-    "keyBenefits": {
-      "title": "Key Benefits",
-      "items": ["Executive and business class vehicles", "Minibuses and coaches for groups", "Scalability to match order volume", "Single operator for different transport formats", "Vehicle adaptation to client needs"]
+      "description": "Weddings, events, city and long-distance travel. Having our own fleet reduces reliance on third-party resources and improves service reliability."
     }
   },
   "advantages": {
     "title": "Why clients choose LONDON ROUTE TRANSFERS for private and corporate transport",
     "subtitle": "Working with private and corporate clients, providing managed and predictable transport solutions",
-    "description": "LONDON ROUTE TRANSFERS is a transport company that organizes passenger travel in London and beyond. We work with private clients, companies, and groups. Our approach ensures a consistent level of service regardless of transport format and number of passengers.",
+    "description": "LONDON ROUTE TRANSFERS works with a wide range of clients — from private individuals to companies and organised groups. Our operating model allows us to adapt the transport format to the client's needs, ensuring a consistent level of service and oversight regardless of the order scale.\n\nWe do not offer one-size-fits-all solutions — every journey is built around the client's requirements, trip format, and organisational conditions.",
     "whoWeServe": {
       "title": "Who we serve",
-      "privateClients": "Private clients",
-      "corporateClients": "Corporate clients",
-      "educational": "Educational institutions",
-      "tourGroups": "Tour groups",
-      "eventOrganizers": "Event organizers"
+      "privateClients": "Private clients: individual travel, airport transfers, family trips and private events.",
+      "corporateClients": "Corporate clients: companies requiring systematic transport for employees, guests, business meetings and events.",
+      "educational": "Educational institutions: schools, colleges and universities organising travel for students and groups.",
+      "tourGroups": "Tour and organised groups: tour operators, travel groups and trip organisers.",
+      "eventOrganizers": "Event organisers: weddings, private events, corporate outings and other occasions."
     },
     "whyChooseUs": {
       "title": "Why choose LONDON ROUTE TRANSFERS",
-      "items": [
-        "Registered UK company with extensive experience",
-        "Own fleet with scalability to match client needs",
-        "Both individual and group transport available",
-        "Private, corporate, and institutional clients",
-        "Centralised management and control of all transport stages",
-        "Single point of responsibility for the client",
-        "Flexible operational model adaptable to different order formats"
-      ]
+      "items": {
+        "registeredCompany": "registered UK company with extensive experience",
+        "ownFleet": "own fleet with the ability to scale to the client's needs",
+        "individualAndGroup": "both individual and group transport available",
+        "privateAndCorporate": "working with private, corporate and institutional clients",
+        "centralisedManagement": "centralised management and oversight of all transport stages",
+        "singlePointOfResponsibility": "single point of responsibility for the client",
+        "flexibleOperationalModel": "flexible operational model adaptable to different order formats"
+      }
     }
   },
   "booking": {
-    "title": "Book a Transfer",
+    "title": "Submit your enquiry and we will contact you to confirm trip details and arrangements",
     "form": {
       "firstName": "First Name",
       "lastName": "Last Name",
@@ -103,8 +95,19 @@
         "no": "No"
       },
       "comment": "Additional Information: luggage, special requirements, comments",
-      "consent": "I consent to the processing of my personal data in accordance with the Privacy Policy and Cookie Policy",
-      "submit": "Submit Request"
+      "consent": "I confirm that I have read the LONDON ROUTE TRANSFERS Privacy Policy and Cookie Policy and give my consent to LONDON ROUTE TRANSFERS to process my personal data for the purpose of processing my enquiry and arranging transport.",
+      "submit": "Submit Request",
+      "sectionContact": "Contact Details",
+      "sectionTrip": "Trip Details",
+      "sectionAdditional": "Additional Information",
+      "placeholders": {
+        "firstName": "John",
+        "lastName": "Smith",
+        "phone": "+44 7000 000000",
+        "email": "name@example.com",
+        "pickupAddress": "Heathrow Airport, Terminal 5",
+        "destination": "Central London"
+      }
     },
     "privacy": {
       "text": "LONDON ROUTE TRANSFERS processes personal data provided in this form exclusively for the purpose of processing your enquiry, arranging transport, and communicating with you. Your data will not be used for marketing purposes without your separate consent and will not be shared with third parties, except where necessary to fulfil the service (e.g. with drivers or carrier partners). You have the right to request access to your data, its correction, or deletion."
@@ -303,6 +306,7 @@
     },
     "transportTerms": {
       "title": "Transport Services Terms",
+      "contents": "Contents",
       "sections": {
         "1": {
           "title": "General Provisions",
@@ -385,7 +389,7 @@
     "companyNumber": "Company Number: 00000000",
     "registeredOffice": "Registered Office: 10 Example House, London, United Kingdom",
     "vatNumber": "VAT Number: GB 000000000",
-    "legalInfo": "All information on this site is for informational purposes only and does not constitute a public offer unless expressly stated otherwise. The company takes reasonable measures to ensure the relevance and accuracy of information, but is not responsible for possible inaccuracies or changes in the conditions of services.",
+    "legalInfo": "All information on this site is for informational purposes only and does not constitute a public offer unless expressly stated otherwise. LONDON ROUTE TRANSFERS takes reasonable measures to ensure the relevance and accuracy of information, but is not responsible for possible inaccuracies or changes in the conditions of services.",
     "documents": {
       "title": "Policies and Documents",
       "privacy": "Privacy Policy",
@@ -400,10 +404,33 @@
     },
     "copyright": "© LONDON ROUTE TRANSFERS, 2009-2026. All rights reserved."
   },
+  "mobileMenu": {
+    "open": "Open menu",
+    "close": "Close menu"
+  },
   "common": {
-    "learnMore": "TODO",
-    "backToHome": "TODO",
-    "loading": "TODO"
+    "learnMore": "Learn More",
+    "backToHome": "Back to Home",
+    "loading": "Loading..."
+  },
+  "contacts": {
+    "title": "Contact and Registration Information",
+    "subtitle": "LONDON ROUTE TRANSFERS — a transport company registered in the United Kingdom",
+    "companyDetails": {
+      "title": "Company Details",
+      "fullName": "Full Name",
+      "legalForm": "Legal Form",
+      "legalFormValue": "Private Limited Company, registered in England and Wales",
+      "registrationNumber": "Registration Number",
+      "registeredOffice": "Registered Office",
+      "vatNumber": "VAT Number"
+    },
+    "contactDetails": {
+      "title": "Contact Details",
+      "phone": "Phone",
+      "email": "Email"
+    },
+    "description": "LONDON ROUTE TRANSFERS operates in the field of passenger transport, including airport transfers, corporate transport, and group travel across London and surrounding regions."
   },
   "seo": {
     "home": {
@@ -441,8 +468,8 @@
   },
   "servicesPage": {
     "hero": {
-      "title": "Our Services",
-      "subtitle": "LONDON ROUTE TRANSFERS provides a full range of passenger transport services across London and the UK. We work with private clients, corporate customers, and groups."
+      "title": "Transfers and Transport for Any Task",
+      "subtitle": "We arrange travel in London and beyond — from individual transfers to group and corporate transport."
     },
     "keyBenefits": {
       "title": "Key Benefits",
@@ -456,55 +483,19 @@
     },
     "airport": {
       "title": "Airport Transfers",
-      "subtitle": "Reliable transfers to all major London airports with flight monitoring and meet and greet",
-      "description": "We provide transfers to Heathrow, Gatwick, Stansted, Luton and London City airports. Our drivers monitor flight arrival times, meet passengers in the arrivals hall with a name board, and assist with luggage. Each airport transfer is managed as a controlled process — from booking confirmation to destination arrival.",
-      "highlights": [
-        "All five London airports covered",
-        "Flight time monitoring and adjustment",
-        "Meet and greet at arrivals with name board",
-        "Luggage assistance included",
-        "Fixed pricing — no surge or hidden fees",
-        "Door-to-door service to any London postcode"
-      ]
+      "description": "Transfers to Heathrow, Gatwick, Stansted, Luton and London City. Airport meet and greet, luggage assistance, flight time monitoring."
     },
     "corporate": {
       "title": "Corporate Transport",
-      "subtitle": "Professional transport solutions for businesses, employees, and clients",
-      "description": "We arrange transport for corporate clients — from individual executive transfers to regular scheduled routes for employees. Our fleet includes executive sedans, MPVs, and group vehicles. We handle business events, conferences, client meetings, and daily commute routes with consistent service quality.",
-      "highlights": [
-        "Executive and business class sedans",
-        "Regular scheduled routes for employees",
-        "Transport for conferences and business events",
-        "Client meeting transfers",
-        "Centralised invoicing for companies",
-        "Dedicated account management"
-      ]
+      "description": "Travel for employees and clients. Transport for business events and regular routes."
     },
     "group": {
       "title": "Group Travel",
-      "subtitle": "Minibuses and coaches for school trips, tours, and corporate group travel",
-      "description": "We provide minibuses and full-size coaches for groups of 8 to 72 passengers. Our vehicles are suitable for school excursions, tourist groups, corporate outings, and event transport. We plan routes, manage schedules, and ensure all passengers travel together comfortably.",
-      "highlights": [
-        "Minibuses (8–16 seats) and coaches (up to 72 seats)",
-        "School and university excursions",
-        "Tourist group transport",
-        "Corporate group outings",
-        "Multi-stop route planning",
-        "Wheelchair accessible vehicles available"
-      ]
+      "description": "Minibuses and coaches for groups. Schools, tourists, corporate trips."
     },
     "private": {
       "title": "Private Travel",
-      "subtitle": "Bespoke transport for weddings, events, and personal travel across London and beyond",
-      "description": "We provide private hire for celebrations, weddings, city tours, and long-distance journeys. Whether you need transport for a special occasion or a comfortable ride to another UK city, we adapt the vehicle and service to your requirements.",
-      "highlights": [
-        "Wedding and celebration transport",
-        "City sightseeing tours",
-        "Long-distance UK travel",
-        "VIP and luxury vehicle options",
-        "Flexible scheduling",
-        "Personalised service"
-      ]
+      "description": "Weddings, events, city and long-distance travel. Having our own fleet reduces reliance on third-party resources and improves service reliability."
     },
     "cta": {
       "title": "Ready to book?",

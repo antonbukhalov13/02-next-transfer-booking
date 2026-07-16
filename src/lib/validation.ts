@@ -1,21 +1,21 @@
 import { z } from "zod";
 
 export const bookingSchema = z.object({
-  firstName: z.string().min(1, "validation.required"),
-  lastName: z.string().min(1, "validation.required"),
+  firstName: z.string().min(1, "required"),
+  lastName: z.string().min(1, "required"),
   company: z.string().optional(),
-  phone: z.string().min(1, "validation.required"),
-  email: z.string().min(1, "validation.required").email("validation.email"),
-  serviceType: z.string().min(1, "validation.required"),
-  pickupAddress: z.string().min(1, "validation.required"),
-  destination: z.string().min(1, "validation.required"),
-  date: z.string().min(1, "validation.required"),
-  time: z.string().min(1, "validation.required"),
-  passengers: z.coerce.number().min(1, "validation.minPassengers"),
+  phone: z.string().min(1, "required"),
+  email: z.email("email").min(1, "required"),
+  serviceType: z.string().min(1, "required"),
+  pickupAddress: z.string().min(1, "required"),
+  destination: z.string().min(1, "required"),
+  date: z.string().min(1, "required"),
+  time: z.string().min(1, "required"),
+  passengers: z.coerce.number().min(1, "minPassengers"),
   airportMeetAndGreet: z.boolean(),
   comment: z.string().optional(),
-  consent: z.literal(true).refine((v) => v === true, {
-    message: "validation.consent",
+  consent: z.boolean().refine((v) => v === true, {
+    message: "consent",
   }),
 });
 
