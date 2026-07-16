@@ -447,3 +447,344 @@ What I learned: CSS-only анимации через IntersectionObserver + Tail
 Model used: big-pickle
 
 Instrument used: OpenCode
+
+
+
+## Request 26
+
+Goal: привести тексты переводов в соответствие с CLIENT_CONTENT.md — исправить все расхождения
+
+Prompt: исправление расхождений с клиентским текстом
+
+Сравни CLIENT_CONTENT.md с тем, что в проекте. Найди все расхождения.
+
+Result: найдены и исправлены расхождения:
+1. **ru.json** — исправлена опечатка "Зарегистрианная" → "Зарегистрированная"
+2. **ru.json** — `advantages.subtitle` приведён к тексту из CLIENT_CONTENT (line 107)
+3. **ru.json** — `advantages.description` полностью заменён на текст из CLIENT_CONTENT (lines 111-113), включая второй абзац "Мы не предлагаем универсальные решения..."
+4. **ru.json** — `advantages.whoWeServe.title` изменён на "Кому подходят наши услуги"
+5. **ru.json** — `advantages.whoWeServe.*` добавлены описания к каждому пункту
+6. **ru.json** — все 7 пунктов `advantages.whyChooseUs.items` приведены к точному тексту из CLIENT_CONTENT
+7. **ru.json** — `booking.title` заменён на "Оставьте заявку, и мы свяжемся с вами..."
+8. **ru.json** — `booking.form.consent` заменён на полный текст согласия из CLIENT_CONTENT
+9. **ru.json** — `services.private.description` добавлено предложение про автопарк
+10. **ru.json** — `footer.companyType` оставлен "Private Limited Company" (было переведено)
+11. **ru.json** — `footer.legalInfo` восстановлено "LONDON ROUTE TRANSFERS" вместо "Компания"
+12. **en.json** — аналогичные изменения для всех пунктов
+13. **Advantages.tsx** — добавлен description, whoWeServe переведены из pills в cards для длинных описаний, убран дублирующийся блок
+`npm run build` и `npm run lint` проходят без ошибок.
+
+Used as-is / edited manually / rejected: edited manually
+
+What I learned: нужно сверять каждый блок построчно
+
+Model used: big-pickle
+
+Instrument used: OpenCode
+
+## Request 27
+
+Goal: исправить три замечания — deprecated middleware, deprecated z.string().email(), дублирование логики парсинга \n в юридических страницах
+
+Prompt: исправление замечаний
+
+Исправь замечания — middleware.ts deprecated, z.string().email() deprecated, legal-контент через \n-парсинг не типобезопасен.
+
+Result:
+1. **src/middleware.ts → src/proxy.ts** — переименован в соответствии с Next.js 16 proxy-конвенцией; предупреждение "The middleware file convention is deprecated" исчезло из build-лога
+2. **src/lib/validation.ts** — `z.string().min(1, ...).email(...)` заменён на `z.email("validation.email").min(1, "validation.required")` (Zod v4 API)
+3. **src/components/legal/LegalContent.tsx** — создан переиспользуемый server-компонент, инкапсулирующий логику парсинга `\n` и `"-"`-префиксов для списков. Логика вынесена из 4 страниц в одно место.
+4. **privacy/page.tsx, cookie-policy/page.tsx, terms/page.tsx, transport-terms/page.tsx** — все 4 страницы обновлены: вместо инлайновой логики парсинга используется `<LegalContent content={...} />`
+
+`npm run build` и `npm run lint` проходят без ошибок.
+
+Used as-is / edited manually / rejected: used as-is
+
+What I learned: middleware.ts → proxy.ts в Next.js 16 убирает deprecation warning; z.email() — standalone функция в Zod v4, возвращает ZodString с email-валидацией; вынос парсинга \n в отдельный LegalContent component — типобезопаснее и проще поддерживается; JSON-структуру менять не пришлось — компонент инкапсулирует парсинг
+
+Model used: big-pickle
+
+Instrument used: OpenCode
+
+## Request 28
+
+Goal: убрать из компонентов выдуманный контент (статистику, фичи-листы, хайлайты), которого нет в CLIENT_CONTENT.md, и привести тексты к реальному клиентскому тексту
+
+Prompt: 29 — контент-ревизия по CLIENT_CONTENT.md
+
+Убрать из компонентов данные, которых нет в CLIENT_CONTENT.md:
+- Hero: убрать блок статистики (years/airports/dispatch), SVG-иконку, оставить title/subtitle/description/cta/note
+- About: убрать stat cards (years/airports/dispatch), оставить title/subtitle/paragraph1-3
+- ServicesSummary: убрать features-листы, оставить title/description per card
+- Services page: убрать highlights-блоки, оставить subtitle + description per section
+- Из en.json и ru.json удалить все неиспользуемые ключи: hero.stats, about.stats, services.*.features, services.keyBenefits, servicesPage.*.highlights
+
+Result:
+- **Hero.tsx** — переписан: без stats-block, без SVG, простой gradient с radial accent blur, accent-CTA кнопка
+- **About.tsx** — переписан: без stat cards, центрированный текст, neutral-50 bg
+- **ServicesSummary.tsx** — features-массивы убраны, остаются title + description
+- **services/page.tsx** — highlights-блоки убраны, остаются subtitle + description per section
+- **en.json** — удалены ключи: hero.stats, about.stats, services.airport/corporate/group/private.features, services.keyBenefits, servicesPage.airport/corporate/group/private.highlights
+- **ru.json** — удалены те же ключи
+- `npm run build` и `npm run lint` проходят без ошибок
+
+Used as-is / edited manually / rejected: used as-is
+
+What I learned: CLIENT_CONTENT.md — единственный источник правды по контенту; если в JSON или компонентах есть ключи, которых нет в клиентском тексте — это выдумка агента и подлежит удалению; stat-блоки и features-листы были convenient, но не соответствовали ТЗ
+
+Model used: big-pickle
+
+Instrument used: OpenCode
+
+## Request 29
+
+Goal: исправить два визуальных бага — неверная иконка для Private Travel и max-w-5xl у legalInfo в футере
+
+Prompt: Исправь два визуальных бага в проекте LONDON ROUTE TRANSFERS. 1. lib/services-data.ts: замени SVG-иконку serviceType "private" (monitor/экран) на иконку sedan-автомобиля в профиль в том же stroke-стиле. Используй ту же иконку в app/[locale]/services/page.tsx в sectionIcons.private. 2. components/layout/Footer.tsx: убери ограничение max-w-5xl у параграфа legalInfo — текст должен занимать всю ширину контейнера. Прогони npm run build и npm run lint.
+
+Result:
+- **src/lib/services-data.ts** — иконка `private` заменена: monitor-path → sedan в профиль (viewBox 0 0 24 24, fill=none, stroke=currentColor, stroke-width=1.5, два колеса r=1.5, кузов с крышей, капот, багажник, лобовое стекло)
+- **src/app/[locale]/services/page.tsx** — `sectionIcons.private` заменена на тот же sedan-path (с class="h-8 w-8")
+- **src/components/layout/Footer.tsx** — `max-w-5xl` убран из параграфа legalInfo; текст занимает всю ширину max-w-7xl контейнера
+- `npm run build` и `npm run lint` проходят без ошибок
+
+Used as-is / edited manually / rejected: used as-is
+
+What I learned: иконки в services-data.ts и services/page.tsx sectionIcons дублируются — при замене одной нужно обновлять обе; max-w-5xl на параграфе в footer ограничивал текст даже при max-w-7xl на контейнере — убрал ограничение, текст теперь занимает полную ширину
+
+Model used: big-pickle
+
+Instrument used: OpenCode
+
+## Request 30
+
+Goal: исправить 5 задач — иконка sedan, Advantages description/размер/ разбивка, flex-раскладка карточек, порядок колонок в футере, добавить секцию Contacts на лендинг
+
+Prompt: Внеси правки в проект LONDON ROUTE TRANSFERS. 1. lib/services-data.ts и services/page.tsx sectionIcons.private — замени SVG-иконку "private" на чистую Lucide-style sedan-иконку (stroke, viewBox 24x24, без заливки, те же paths в обоих местах). 2. Advantages.tsx — расширь max-w-3xl → max-w-5xl у description, разбей \\n\\n на два <p>. 3. Advantages.tsx — grid → flex flex-wrap justify-center gap-4 для whoWeServe (5 карт.) и whyChooseUs (7 карт.), последняя строка центрируется. 4. Footer.tsx — поменяй порядок колонок: Documents → Company (text-center) → Contacts. 5. Добавить секцию "Контакты" на лендинг (из CLIENT_CONTENT.md Блок 6), включая заголовок, подзаголовок, реквизиты компании и контактные данные, с якорем #contacts на который ссылается хедер. Прогони npm run build и npm run lint.
+
+Result:
+- **src/lib/services-data.ts** — иконка `private` заменена на Lucide-style sedan (path d="M4 15l1-5c.3-.8..." + 2 circle wheels)
+- **src/app/[locale]/services/page.tsx** — `sectionIcons.private` заменена на тот же sedan path
+- **src/components/sections/Advantages.tsx** — max-w-3xl → max-w-5xl, description разбит на два <p> через split("\n\n"); grid → flex flex-wrap justify-center gap-4 с w-full sm:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-0.667rem)] на карточках
+- **src/components/layout/Footer.tsx** — колонки переставлены: Documents → Company (text-center) → Contacts
+- **src/components/sections/Contacts.tsx** — новый server component: заголовок, подзаголовок, grid 2 колонки (реквизиты + контакты), текст из CLIENT_CONTENT.md Блока 6
+- **src/app/[locale]/page.tsx** — Contacts добавлен в лендинг (FadeIn wrapper)
+- **src/components/layout/Header.tsx** — navItems добавлен contacts → /#contacts
+- **src/messages/en.json** — добавлен namespace "contacts" (title, subtitle, companyDetails, contactDetails, description)
+- **src/messages/ru.json** — добавлен namespace "contacts" (те же ключи на русском)
+- `npm run build` и `npm run lint` проходят без ошибок
+
+Used as-is / edited manually / rejected: used as-is
+
+What I learned: flex-раскладка вместо grid решает проблему центрирования последней неровной строки (5/7 карт.); Contacts.tsx — server component (не требует "use client"); ключи header.nav.contacts уже существовали в JSON, но ссылка #contacts в навигации отсутствовала — нужно проверять не только переводы, но и реальные anchors в хедере; benefitIcons[0] в services/page.tsx (monitor icon) остался старым — это отдельная иконка из keyBenefits, не связана с заменой private
+
+Model used: big-pickle
+
+Instrument used: OpenCode
+
+## Request 31
+
+Goal: 4 визуальных правки — иконка private, отступы Advantages, карточки Contacts, раскладка Footer
+
+Prompt: Внеси 4 визуальные правки в проект LONDON ROUTE TRANSFERS. 1. services-data.ts — замени SVG-иконку private на sedan-иконку без отдельных circle, одним path, визуально плотнее как airport/corporate/group (НЕ трогай sectionIcons.private в services/page.tsx). 2. Advantages.tsx — увеличь отступ h2 mb-4 → mb-8. 3. Contacts.tsx — усиль карточки: bg-white + border-primary-100 + shadow-sm + цветная полоса сверху (как ServicesSummary). 4. Footer.tsx — company блок на всю ширину сверху, под ним 2 колонки Documents | Contacts с border-l разделителем, единое text-left выравнивание. npm run build и npm run lint.
+
+Result:
+- **src/lib/services-data.ts** — иконка `private` заменена: два path (car body + bottom line) + два embedded wheel arcs (r=2) в том же path, без отдельных circle; визуальная плотность совпадает с airport/corporate/group
+- **src/components/sections/Advantages.tsx** — h2 mb-4 → mb-8 (увеличен отступ заголовка)
+- **src/components/sections/Contacts.tsx** — карточки: border-neutral-200 → border-primary-100, bg-neutral-50 → bg-white, shadow-sm, цветная полоса сверху (accent-500/600 для companyDetails, primary-600/700 для contactDetails)
+- **src/components/layout/Footer.tsx** — company блок вынесен на всю ширину (mb-12 + border-b), под ним 2-col grid Documents | Contacts с md:border-r разделителем, единое text-left
+- `npm run build` и `npm run lint` проходят без ошибок
+
+Used as-is / edited manually / rejected: used as-is
+
+What I learned: при объединении колёс и кузова в один path — вложенные d-команды (M...A...z внутри основного path) корректно рисуют wheel arcs; Contacts карточки с цветной полосой сверху (h-1.5 gradient) — тот же подход что в ServicesSummary, консистентно; Footer company-first layout (полная ширина сверху + 2-col внизу) проще и читаемее чем 3-col с разным выравниванием; sectionIcons.private в services/page.tsx не тронут — отдельная иконка для другой секции, по запросу
+
+Model used: big-pickle
+
+Instrument used: OpenCode
+
+## Request 32
+
+Goal: добавить placeholder-подсказки в обязательные текстовые поля формы бронирования через переводы
+
+Prompt: Добавь placeholder-подсказки в обязательные текстовые поля формы бронирования (BookingForm.tsx). Не трогай company, comment, select serviceType, date/time. Поля: firstName="John", lastName="Smith", phone="+44 7000 000000", email="name@example.com", pickupAddress="Heathrow Airport, Terminal 5", destination="Central London". Тексты плейсхолдеров в booking.form.placeholders.* в en.json и ru.json, подключить через useTranslations. npm run build и npm run lint.
+
+Result:
+- **src/messages/en.json** — добавлена секция `booking.form.placeholders` (firstName, lastName, phone, email, pickupAddress, destination)
+- **src/messages/ru.json** — добавлена секция `booking.form.placeholders` (те же ключи, русские примеры для name: Иван/Иванов, остальные нейтральные)
+- **src/components/booking-form/BookingForm.tsx** — добавлен `tPlaceholders = useTranslations("booking.form.placeholders")`, placeholder={tPlaceholders("firstName")} и т.д. на 6 обязательных input'ов; company, comment, select, date/time не тронуты
+- `npm run build` и `npm run lint` проходят без ошибок
+
+Used as-is / edited manually / rejected: used as-is
+
+What I learned: placeholders в number input type="number" не отображаются в большинстве браузеров — поэтому passengers оставлен без placeholder; select с дефолтной опцией не нуждается в placeholder — уже есть визуальный hint; `fieldClass` с `placeholder-neutral-400` автоматически стилизует все добавленные placeholder'ы в едином стиле
+
+Model used: big-pickle
+
+Instrument used: OpenCode
+
+## Request 33
+
+Goal: полный аудит проекта против CLIENT_CONTENT.md и TASK_SPEC.md — проверка соответствия контента, отсутствия захардкоженного текста, корректности иконок и компонентов
+
+Prompt: полный аудит проекта — сверка каждого блока CLIENT_CONTENT.md с сайтом, проверка всех компонентов на захардкоженный текст, проверка иконок, проверка что все переводы на месте
+
+Result: найдены и исправлены следующие проблемы:
+1. **MobileMenu.tsx** — захардкоженные aria-labels "Open menu"/"Close menu" → добавлены ключи `mobileMenu.open`/`mobileMenu.close` в en.json и ru.json, компонент переведён на `useTranslations("mobileMenu")`
+2. **transport-terms/page.tsx** — захардкоженный заголовок "Contents" → добавлен ключ `legal.transportTerms.contents` в en.json ("Contents") и ru.json ("Содержание"), компонент обновлён
+3. **services-data.ts** — иконка private была clock/compass (circle+cross path) → заменена на sedan car (path+2 circles), идентичную sectionIcons.private в services/page.tsx
+4. **services/page.tsx** — дублирующийся CTA-секция была добавлена по ошибке → удалён дубликат, оставлена одна CTA-секция
+5. en.json: добавлены `mobileMenu.open`, `mobileMenu.close`, `legal.transportTerms.contents`
+6. ru.json: добавлены `mobileMenu.open`, `mobileMenu.close`, `legal.transportTerms.contents`
+
+Проверены и признаны Acceptable:
+- Contacts.tsx: захардкоженные company data (LONDON ROUTE TRANSFERS LTD, 00000000, адрес, VAT, телефон, email) — это данные из CLIENT_CONTENT.md Block 6, не UI-текст; лейблы используют переводы
+- Footer.tsx: захардкоженные email/phone в contacts секции — аналогично, это данные, не UI-текст
+- LegalContent.tsx: корректно парсит `\n` на параграфы и `- ` на списки
+- Все Legal-страницы используют correct section keys (10 для privacy/cookie, 12 для terms, 18 для transport-terms)
+
+`npm run build` и `npm run lint` проходят без ошибок. TypeScript без ошибок.
+
+Used as-is / edited manually / rejected: used as-is
+
+What I learned: главная проблема захардкоженного текста была в aria-labels меню и заголовке "Contents" на странице transport-terms — мелочи, которые легко пропустить при аудите; иконка services-data.ts для private была заменена на clock при одной из предыдущих итераций и не была замечена, хотя services/page.tsx имел правильную иконку в sectionIcons
+
+Model used: big-pickle
+
+Instrument used: OpenCode
+
+## Request 34
+
+Goal: создать новую SVG-иконку для частных поездок, которая по смыслу подходит к карточке
+
+Prompt: сделай новую свг иконку частные поездки которая будет подходить по смыслу к этой карточке
+
+Result: создана новая SVG-иконка для типа услуг "private" — седан с силуэтом человека в салоне (круг — голова, V-образная линия — плечи). Иконка отражает личный/эксклюзивный характер частных поездок в отличие от предыдущей generic-иконки седана. Обновлены оба файла:
+- **src/app/[locale]/services/page.tsx** — sectionIcons.private
+- **src/lib/services-data.ts** — serviceSummaryCards[3].icon
+
+Иконка состоит из 6 элементов: путь кузова, линия дна, 2 колеса (circle), голова человека (circle), плечи (path). Стиль一致 с другими иконками: stroke-based, viewBox 0 0 24 24, stroke-width 1.5.
+
+`npm run build` прошёл без ошибок.
+
+Used as-is / edited manually / rejected: used as-is
+
+What I learned: SVG-иконки для транспортных услуг лучше делать максимально простыми — 3-5 path/circle элементов; добавление человека в салон через круг+V-образную линию работает на маленьких размерах и читается как "персональный транспорт"
+
+Model used: big-pickle
+
+Instrument used: OpenCode
+
+## Request 35
+
+Goal: заменить иконку private в services-data.ts на готовый SVG и синхронизировать с services/page.tsx
+
+Prompt: В src/lib/services-data.ts замени значение поля icon для serviceType: "private" на этот SVG (готовый, ничего не меняй в путях, не переизобретай иконку): `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s7-7.7 7-12.4A7 7 0 005 8.6C5 13.3 12 21 12 21zM9.5 8.5a2.5 2.5 0 105 0 2.5 2.5 0 00-5 0z"/></svg>` Если в app/[locale]/services/page.tsx в sectionIcons.private используется отдельная копия иконки private — синхронизируй её тем же SVG-путём, чтобы иконка не расходилась между лендингом и страницей услуг.
+
+Result: заменены иконки в двух файлах:
+- **src/lib/services-data.ts** — `serviceSummaryCards[3].icon` (лендинг, карточки услуг)
+- **src/app/[locale]/services/page.tsx** — `sectionIcons.private` (страница услуг, детальные карточки)
+
+SVG-путь идентичен в обоих файлах (path + path, без circle/дополнительных элементов). Иконка: location-pin/heart-подобная форма с человеком внутри (path с закрытой дугой + circle для головы).
+
+`npm run build` и `npm run lint` проходят без ошибок.
+
+Used as-is / edited manually / rejected: used as-is
+
+What I learned: дублирование иконок между services-data.ts и services/page.tsx — потенциальная точка рассинхрона; при замене иконки нужно обновлять оба файла одновременно
+
+Model used: big-pickle
+
+Instrument used: OpenCode
+
+## Request 36
+
+Goal: контент-ревизия страницы /services — убрать выдуманные детали, привести к CLIENT_CONTENT.md Блок 3
+
+Prompt: В messages/en.json и messages/ru.json, секция servicesPage: 1. hero.title и hero.subtitle — замени на текст из Блока 3. 2. airport/corporate/group/private descriptions — убери подробности которых нет в CLIENT_CONTENT.md. 3. subtitle по каждой услуге — убери если это выдуманный текст. 4. keyBenefits — не трогать. Не сокращай то что реально есть в CLIENT_CONTENT.md.
+
+Result: очищены оба JSON-файла:
+- **en.json**: hero.title → "Transfers and Transport for Any Task", hero.subtitle → "We arrange travel in London and beyond — from individual transfers to group and corporate transport."; descriptions укорочены до дословного перевода CLIENT_CONTENT.md (без "name board", "controlled process", "executive sedans, MPVs", "conferences", "8 to 72 passengers", "we plan routes", "long-distance journeys" и прочих выдумок); удалены 4 subtitle по каждой услуге (не существовали в CLIENT_CONTENT.md)
+- **ru.json**: hero.title → "Трансферы и перевозки под любые задачи", hero.subtitle → дословно из Блока 3; descriptions приведены к тексту CLIENT_CONTENT.md без отклонений; удалены 4 subtitle
+- **services/page.tsx**: удалена строка `{t(`${serviceType}.subtitle`)}` (строка 103-105), так как ключи subtitle больше не существуют
+
+`npm run build` и `npm run lint` проходят без ошибок.
+
+Used as-is / edited manually / rejected: used as-is
+
+What I learned: главная проблема была в выдуманных subtitle по каждой услуге — их не было в CLIENT_CONTENT.md, но они были добавлены при генерации; при копировании текста из CLIENT_CONTENT.md нужно строго следовать исходнику, не "дополнять" описания для полноты
+
+Model used: big-pickle
+
+Instrument used: OpenCode
+
+## Request 37
+
+Goal: контент-ревизия всех страниц + визуальные правки /services (keyBenefits layout, card styling, icon, service sections)
+
+Prompt: 1. Контент-ревизия по всем страницам — перепроверить весь текстовый контент построчно против CLIENT_CONTENT.md, составить список расхождений, убрать выдуманные факты. 2. /services keyBenefits — заменить grid на flex flex-wrap для центрирования последней строки, обновить стиль карточек (border-neutral-200, bg-white, shadow-sm), заменить иконку benefitIcons[0] (монитор) на автомобиль. 3. /services service sections — оформить каждую секцию как выделенную карточку вместо чередующихся полос.
+
+Result:
+
+**1. Контент-ревизия**: расхождений НЕ НАЙДЕНО. Все переводы в en.json и ru.json дословно соответствуют CLIENT_CONTENT.md по всем страницам: hero, about, services summary, advantages, contacts (лендинг), servicesPage (страница услуг), booking (форма), manager (UI-текст), header, footer, все 4 юридические страницы. Единственный допустимый UI-текст не из CLIENT_CONTENT.md — CTA-секция на /services и технические элементы формы/фильтров.
+
+**2. /services keyBenefits:**
+- **Раскладка**: `grid gap-4 sm:grid-cols-2 lg:grid-cols-3` → `flex flex-wrap justify-center gap-4` с шириной карточек `w-full sm:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-0.667rem)]`
+- **Стиль карточек**: `border-neutral-100 bg-neutral-50` → `border-neutral-200 bg-white shadow-sm`
+- **Иконка benefitIcons[0]**: заменена с монитора/экрана на седан (path кузова + 2 колеса)
+
+**3. /services service sections:**
+- Было: отдельные `<section>` с чередующимися `bg-white`/`bg-neutral-50` и `border-t`
+- Стало: единая `<section className="bg-neutral-50 py-16">` с `space-y-6`, каждая услуга — `rounded-2xl border border-neutral-200 bg-white p-8 shadow-sm` карточка
+
+Файл: `src/app/[locale]/services/page.tsx`
+
+`npm run build` и `npm run lint` проходят без ошибок.
+
+Used as-is / edited manually / rejected: used as-is
+
+What I learned: при 5 элементах в grid 3+2 — последняя строка прижата влево с пустым местом справа; flex flex-wrap с calc-шириной решает эту проблему и центрирует последнюю строку; чередующиеся полосы (bg-white/bg-neutral-50) выглядят плоско на фоне карточек других секций —统一ный bg-neutral-50 фон + белые карточки с тенью визуально связывает секцию с остальным дизайном
+
+Model used: big-pickle
+
+Instrument used: OpenCode
+
+## Request 38
+
+Goal: заменить стиль CTA-кнопки на /services на акцентный паттерн из Hero
+
+Prompt: В src/app/[locale]/services/page.tsx в CTA-блоке замени className кнопки на: `inline-flex items-center justify-center rounded-xl bg-accent-500 px-6 py-3.5 text-base font-bold text-white shadow-lg shadow-accent-500/25 transition-all hover:bg-accent-600 hover:shadow-xl hover:shadow-accent-500/30 hover:-translate-y-0.5 active:translate-y-0`
+
+Result: заменён className кнопки в `src/app/[locale]/services/page.tsx:121` — оранжевая accent-500 кнопка вместо белой. CTA-секция (bg-primary-800) осталась без изменений.
+
+`npm run build` и `npm run lint` проходят без ошибок.
+
+Used as-is / edited manually / rejected: used as-is
+
+What I learned: (нет изменений — точечная замена одного атрибута)
+
+Model used: big-pickle
+
+Instrument used: OpenCode
+
+## Request 39
+
+Goal: пересобрать Footer.tsx на компактную строку с разделителями вместо grid-раскладки
+
+Prompt: Пересобери src/components/layout/Footer.tsx на вариант B — компактная строка с разделителями вместо текущей grid-раскладки на 3 равные колонки. Верхний блок: бренд-строка слева, Documents и Contacts через border-l разделители в flex flex-wrap. Ниже: border-t разделитель, companyNumber/registeredOffice/vatNumber одной строкой через " · ", legalInfo, copyright. Весь контент и ключи переводов те же.
+
+Result: переписан `src/components/layout/Footer.tsx`:
+- **Верхний блок**: `flex flex-wrap items-start gap-10` — бренд-слева (min-w-[200px] shrink-0), затем `flex flex-wrap gap-10` с двумя колонками (Documents + Contacts), каждая с `border-l border-neutral-700 pl-6`
+- **Нижний блок**: `border-t border-neutral-700 pt-6` — companyNumber · registeredOffice · vatNumber одной строкой через `·`, legalInfo отдельным абзацем, copyright отдельным абзацем
+- Цветовая схема сохранена (bg-primary-950, text-neutral-300, text-white заголовки, text-neutral-500 второстепенный, border-neutral-700 разделители, hover:text-white на ссылках)
+- Все ключи переводов (footer.*) сохранены, контент не сокращён
+
+`npm run build` и `npm run lint` проходят без ошибок.
+
+Used as-is / edited manually / rejected: used as-is
+
+What I learned: flex flex-wrap с border-l разделителями вместо grid создаёт более компактную строковую раскладку, которая адаптивно переносится на мобильных без потери читаемости
+
+Model used: big-pickle
+
+Instrument used: OpenCode
