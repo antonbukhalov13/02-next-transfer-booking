@@ -12,7 +12,7 @@ export const bookingSchema = z.object({
   date: z.string().min(1, "required"),
   time: z.string().min(1, "required"),
   passengers: z.coerce.number().min(1, "minPassengers"),
-  airportMeetAndGreet: z.boolean(),
+  airportMeetAndGreet: z.union([z.boolean(), z.string()]).transform(v => v === true || v === "true"),
   comment: z.string().optional(),
   consent: z.boolean().refine((v) => v === true, {
     message: "consent",

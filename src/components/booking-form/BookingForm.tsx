@@ -65,6 +65,7 @@ export default function BookingForm() {
       passengers: 1,
       airportMeetAndGreet: false,
       comment: "",
+      consent: false,
     },
   });
 
