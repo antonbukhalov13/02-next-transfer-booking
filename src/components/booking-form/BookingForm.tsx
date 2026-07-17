@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
 import { bookingSchema, type BookingFormValues } from "@/lib/validation";
+import { createBooking } from "@/lib/api";
 
 type FormState = "idle" | "submitting" | "success" | "error";
 
@@ -43,6 +44,7 @@ export default function BookingForm() {
   const tValidation = useTranslations("validation");
   const tPlaceholders = useTranslations("booking.form.placeholders");
   const [formState, setFormState] = useState<FormState>("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const {
     register,
@@ -69,15 +71,20 @@ export default function BookingForm() {
     },
   });
 
-  function onSubmit() {
+  async function onSubmit(data: BookingFormValues) {
     setFormState("submitting");
-    setTimeout(() => {
+    try {
+      await createBooking(data);
       setFormState("success");
       reset();
-    }, 1000);
+    } catch (err) {
+      setErrorMessage(err instanceof Error ? err.message : "Unknown error");
+      setFormState("error");
+    }
   }
 
   function handleDismiss() {
+    setErrorMessage("");
     setFormState("idle");
   }
 
@@ -127,7 +134,7 @@ export default function BookingForm() {
       {formState === "error" && (
         <div className="animate-fade-in-up rounded-lg border border-accent-200 bg-accent-50 p-4 text-accent-800" role="alert">
           <p className="font-medium">{t("states.error")}</p>
-          <p className="text-sm">{t("states.errorMessage")}</p>
+          <p className="text-sm">{errorMessage || t("states.errorMessage")}</p>
         </div>
       )}
 
