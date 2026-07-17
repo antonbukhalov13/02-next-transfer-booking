@@ -788,3 +788,21 @@ What I learned: flex flex-wrap с border-l разделителями вмест
 Model used: big-pickle
 
 Instrument used: OpenCode
+
+## Request 40
+
+Goal: исправить баги: стикки-хедер перекрывает контент при переходе по якорю на /services, и дублирование хеша (#airport#airport) в URL при переходе с лендинга
+
+Prompt: при переходе по ссылке на страницу /services, стикки футер закрывает часть контента на который мы переходим, исправь. При переходе на страницу /services, на карточку airport transfers в url пишется http://localhost:3000/en/services#airport#airport
+
+Result: два исправления:
+1. `src/app/[locale]/services/page.tsx` — добавлен `scroll-mt-20` на секции `#airport`, `#corporate`, `#group`, `#private`, чтобы sticky header не перекрывал контент при якорной навигации
+2. `src/components/sections/ServicesSummary.tsx` — заменён `<Link>` на `<a>` для карточек услуг, удалён неиспользуемый импорт `Link` из `next/link`. Обычная ссылка `<a>` делает полную навигацию и Next.js App Router не дублирует хеш
+
+Used as-is / edited manually / rejected: used as-is
+
+What I learned: Next.js App Router при клиентской навигации через `<Link>` с хешем может дублировать якорь в URL — обычный `<a>` тег надёжнее для межстраничных хеш-ссылок
+
+Model used: big-pickle
+
+Instrument used: OpenCode
