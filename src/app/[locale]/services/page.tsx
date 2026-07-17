@@ -85,7 +85,7 @@ export default async function ServicesPage() {
               <div
                 key={serviceType}
                 id={serviceType}
-                className="flex items-start gap-6 rounded-2xl border border-neutral-200 bg-white p-8 shadow-sm"
+                className="scroll-mt-20 flex items-start gap-6 rounded-2xl border border-neutral-200 bg-white p-8 shadow-sm"
               >
                 <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-primary-100 text-primary-600">
                   <span

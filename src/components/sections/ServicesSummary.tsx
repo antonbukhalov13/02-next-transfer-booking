@@ -1,5 +1,4 @@
 import { getTranslations, getLocale } from "next-intl/server";
-import Link from "next/link";
 import { serviceSummaryCards } from "@/lib/services-data";
 
 const accentColors = [
@@ -27,7 +26,7 @@ export default async function ServicesSummary() {
 
         <div className="grid gap-6 sm:grid-cols-2">
           {serviceSummaryCards.map((card, idx) => (
-            <Link
+            <a
               key={card.serviceType}
               href={`/${locale}${card.href}`}
               className="group flex flex-col overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-md"
@@ -47,7 +46,7 @@ export default async function ServicesSummary() {
                   {t(`${card.serviceType}.description`)}
                 </p>
               </div>
-            </Link>
+            </a>
           ))}
         </div>
       </div>
