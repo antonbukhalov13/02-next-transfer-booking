@@ -1,4 +1,5 @@
 import { getTranslations, getLocale } from "next-intl/server";
+import Link from "next/link";
 import { serviceSummaryCards } from "@/lib/services-data";
 
 const accentColors = [
@@ -48,6 +49,18 @@ export default async function ServicesSummary() {
               </div>
             </a>
           ))}
+        </div>
+
+        <div className="mt-10 text-center">
+          <Link
+            href={`/${locale}/services`}
+            className="inline-flex items-center gap-2 text-sm font-medium text-primary-600 transition-colors hover:text-primary-800"
+          >
+            {t("viewAll")}
+            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </Link>
         </div>
       </div>
     </section>
