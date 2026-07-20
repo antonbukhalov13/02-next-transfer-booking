@@ -141,6 +141,8 @@
       "completed": "Completed",
       "cancelled": "Cancelled"
     },
+    "loading": "Loading bookings...",
+    "error": "Failed to load bookings",
     "emptyState": {
       "title": "No bookings found",
       "description": "Try adjusting your search or filter criteria.",

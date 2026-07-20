@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
-import { mockBookings } from "@/lib/mock-data";
+import { getBookings } from "@/lib/api";
+import type { Booking } from "@/lib/api";
 import type { BookingStatus } from "@/types/mock-bookings";
 
 const statusStyles: Record<BookingStatus, string> = {
@@ -16,11 +17,22 @@ export default function BookingsList() {
   const t = useTranslations("manager");
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState<BookingStatus | "all">("all");
+  const [bookings, setBookings] = useState<Booking[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
-  const filtered = mockBookings.filter((b) => {
+  useEffect(() => {
+    getBookings()
+      .then(setBookings)
+      .catch((err) => setError(err instanceof Error ? err.message : "Unknown error"))
+      .finally(() => setLoading(false));
+  }, []);
+
+  const filtered = bookings.filter((b) => {
+    const clientName = `${b.firstName} ${b.lastName}`;
     const matchesSearch =
       search === "" ||
-      b.clientName.toLowerCase().includes(search.toLowerCase()) ||
+      clientName.toLowerCase().includes(search.toLowerCase()) ||
       (b.company && b.company.toLowerCase().includes(search.toLowerCase())) ||
       b.pickup.toLowerCase().includes(search.toLowerCase()) ||
       b.destination.toLowerCase().includes(search.toLowerCase());
@@ -63,7 +75,19 @@ export default function BookingsList() {
         </div>
       </div>
 
-      {filtered.length === 0 ? (
+      {loading ? (
+        <div className="rounded-xl border border-neutral-200 bg-white py-12 text-center">
+          <div className="mx-auto h-8 w-8 animate-spin rounded-full border-4 border-primary-200 border-t-primary-600" />
+          <p className="mt-3 text-sm text-neutral-500">{t("loading")}</p>
+        </div>
+      ) : error ? (
+        <div className="rounded-xl border border-accent-200 bg-accent-50 py-8 text-center">
+          <p className="text-lg font-medium text-accent-800">
+            {t("error")}
+          </p>
+          <p className="mt-1 text-sm text-accent-600">{error}</p>
+        </div>
+      ) : filtered.length === 0 ? (
         <div className="rounded-xl border border-neutral-200 bg-white py-12 text-center">
           <p className="text-lg font-medium text-neutral-900">
             {t("emptyState.title")}
@@ -90,7 +114,7 @@ export default function BookingsList() {
                 <div className="mb-2 flex items-start justify-between gap-2">
                   <div>
                     <p className="font-medium text-neutral-900">
-                      {booking.clientName}
+                      {booking.firstName} {booking.lastName}
                     </p>
                     {booking.company && (
                       <p className="text-xs text-neutral-500">
@@ -111,9 +135,9 @@ export default function BookingsList() {
                   <p>
                     {booking.pickup} → {booking.destination}
                   </p>
-                  {booking.notes && (
+                  {booking.comment && (
                     <p className="text-xs text-neutral-400 truncate">
-                      {booking.notes}
+                      {booking.comment}
                     </p>
                   )}
                   <div className="flex items-center gap-4 pt-1 text-xs text-neutral-500">
@@ -163,7 +187,7 @@ export default function BookingsList() {
                   >
                     <td className="px-4 py-3">
                       <div className="font-medium text-neutral-900">
-                        {booking.clientName}
+                        {booking.firstName} {booking.lastName}
                       </div>
                       {booking.company && (
                         <div className="text-xs text-neutral-500">
@@ -176,9 +200,9 @@ export default function BookingsList() {
                     </td>
                     <td className="max-w-[280px] truncate px-4 py-3 text-neutral-600">
                       {booking.pickup} → {booking.destination}
-                      {booking.notes && (
+                      {booking.comment && (
                         <div className="mt-0.5 truncate text-xs text-neutral-400">
-                          {booking.notes}
+                          {booking.comment}
                         </div>
                       )}
                     </td>
