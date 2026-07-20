@@ -1,6 +1,6 @@
 ## План
 
-0. генерация AGENTS.md на основе TASK.md, docs/TASK_SPEC.md, docs/CLIENT_CONTENT.md
+0. генерация AGENTS.md на основе TASK.md, docs/02-transfer-task-spec.md, docs/02-transfer-client-content.md
 1. инициализация проекта и инфраструктуры
     1.1. create-next-app (App Router, TypeScript) + структура папок src/app, components, lib, types, i18n, messages
     1.2. настройка next-intl: routing.ts, request.ts, middleware.ts, next.config, сегмент [locale]
@@ -37,7 +37,7 @@
 
 0 — генерация AGENTS.md
 
-Изучи TASK.md, docs/TASK_SPEC.md и docs/CLIENT_CONTENT.md в корне проекта и на их основе составь AGENTS.md с инструкциями для будущих агентных сессий: обязательный стек, структура проекта, ограничения (без backend, форма не связана со списком бронирований), i18n-конвенции, server/client разделение, DoD-чеклист.
+Изучи TASK.md, docs/02-transfer-task-spec.md и docs/02-transfer-client-content.md в корне проекта и на их основе составь AGENTS.md с инструкциями для будущих агентных сессий: обязательный стек, структура проекта, ограничения (без backend, форма не связана со списком бронирований), i18n-конвенции, server/client разделение, DoD-чеклист.
 
 ## Request 2
 

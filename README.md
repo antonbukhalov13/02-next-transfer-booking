@@ -11,47 +11,47 @@ Next.js 16 (App Router), React, TypeScript, Tailwind CSS v4, next-intl, react-ho
 ```
 src/
   app/
-    [locale]/                  # сегмент локали (en, ru)
-      layout.tsx               # layout с header/footer и i18n-провайдером
-      page.tsx                 # лендинг (hero, о компании, услуги, преимущества, контакты)
-      services/page.tsx        # страница детального описания услуг
-      booking/page.tsx         # форма бронирования
-      manager/page.tsx         # список бронирований (моки, для менеджера)
-      privacy/page.tsx         # политика конфиденциальности
-      cookie-policy/page.tsx   # политика использования cookies
-      terms/page.tsx           # условия использования
-      transport-terms/page.tsx # условия транспортных услуг
-    layout.tsx                 # корневой layout (globals.css)
-    globals.css                # Tailwind v4 @theme токены
+    [locale]/                   # сегмент локали (en, ru)
+      layout.tsx                # layout с header/footer и i18n-провайдером
+      page.tsx                  # лендинг (hero, о компании, услуги, преимущества, контакты)
+      services/page.tsx         # страница детального описания услуг
+      booking/page.tsx          # форма бронирования
+      manager/page.tsx          # список бронирований (моки, для менеджера)
+      privacy/page.tsx          # политика конфиденциальности
+      cookie-policy/page.tsx    # политика использования cookies
+      terms/page.tsx            # условия использования
+      transport-terms/page.tsx  # условия транспортных услуг
+    layout.tsx                  # корневой layout (globals.css)
+    globals.css                 # Tailwind v4 @theme токены
   components/
-    ui/                        # переиспользуемые UI-компоненты (FadeIn)
-    sections/                  # секции лендинга (Hero, About, ServicesSummary, Advantages, Contacts)
-    booking-form/              # клиентские компоненты формы бронирования
-    manager/                   # фильтры, список бронирований, пустое состояние
-    legal/                     # компонент юридических страниц (LegalContent)
-    layout/                    # Header, Footer, LanguageSwitcher, MobileMenu, Providers
+    ui/                         # переиспользуемые UI-компоненты (FadeIn)
+    sections/                   # секции лендинга (Hero, About, ServicesSummary, Advantages, Contacts)
+    booking-form/               # клиентские компоненты формы бронирования
+    manager/                    # фильтры, список бронирований, пустое состояние
+    legal/                      # компонент юридических страниц (LegalContent)
+    layout/                     # Header, Footer, LanguageSwitcher, MobileMenu, Providers
   i18n/
-    routing.ts                 # конфигурация локалей (en, ru)
-    request.ts                 # getMessages для next-intl
+    routing.ts                  # конфигурация локалей (en, ru)
+    request.ts                  # getMessages для next-intl
   messages/
-    en.json                    # переводы на английский
-    ru.json                    # переводы на русский
+    en.json                     # переводы на английский
+    ru.json                     # переводы на русский
   types/
-    booking.ts                 # типы данных формы бронирования
-    mock-bookings.ts           # типы моковых бронирований
-    services.ts                # типы услуг
+    booking.ts                  # типы данных формы бронирования
+    mock-bookings.ts            # типы моковых бронирований
+    services.ts                 # типы услуг
   lib/
-    validation.ts              # zod-схема валидации формы
-    mock-data.ts               # моковые данные бронирований
-    services-data.ts           # данные карточек услуг
+    validation.ts               # zod-схема валидации формы
+    mock-data.ts                # моковые данные бронирований
+    services-data.ts            # данные карточек услуг
 docs/
-  AGENTS.md                    # правила для агента
-  AI_USAGE.md                  # журнал AI-запросов
-  CLIENT_CONTENT.md            # исходный клиентский текст (единственный источник контента)
-  PROMPT_PLAN.md               # пошаговый план разработки
-  TASK.md                      # краткая сводка задачи
-  TASK_SPEC.md                 # полное ТЗ и критерии приёмки
-proxy.ts                       # next-intl middleware (переключение локалей)
+  AGENTS.md                     # правила для агента
+  AI_USAGE.md                   # журнал AI-запросов
+  02-transfer-client-content.md # исходный клиентский текст (единственный источник контента)
+  PROMPT_PLAN.md                # пошаговый план разработки
+  TASK.md                       # краткая сводка задачи
+  02-transfer-task-spec.md      # полное ТЗ и критерии приёмки
+proxy.ts                        # next-intl middleware (переключение локалей)
 ```
 
 ## Основные разделы сайта
