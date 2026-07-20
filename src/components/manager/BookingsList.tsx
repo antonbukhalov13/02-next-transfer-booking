@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
-import { getBookings } from "@/lib/api";
+import { getBookings, updateBookingStatus } from "@/lib/api";
 import type { Booking } from "@/lib/api";
 import type { BookingStatus } from "@/types/mock-bookings";
 
@@ -20,6 +20,7 @@ export default function BookingsList() {
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [updating, setUpdating] = useState<string | null>(null);
 
   useEffect(() => {
     getBookings()
@@ -46,6 +47,20 @@ export default function BookingsList() {
   function handleResetFilters() {
     setSearch("");
     setStatusFilter("all");
+  }
+
+  function handleStatusChange(id: string, status: BookingStatus) {
+    setUpdating(id);
+    updateBookingStatus(id, status)
+      .then(() => {
+        setBookings((prev) =>
+          prev.map((b) => (b.id === id ? { ...b, status } : b))
+        );
+      })
+      .catch((err) => {
+        setError(err instanceof Error ? err.message : "Failed to update status");
+      })
+      .finally(() => setUpdating(null));
   }
 
   return (
@@ -122,11 +137,19 @@ export default function BookingsList() {
                       </p>
                     )}
                   </div>
-                  <span
-                    className={`shrink-0 rounded-full border px-2.5 py-0.5 text-xs font-medium ${statusStyles[booking.status]}`}
+                  <select
+                    value={booking.status}
+                    onChange={(e) =>
+                      handleStatusChange(booking.id, e.target.value as BookingStatus)
+                    }
+                    disabled={updating === booking.id}
+                    className={`rounded-full border px-2.5 py-0.5 text-xs font-medium ${statusStyles[booking.status]} cursor-pointer`}
                   >
-                    {t("status." + booking.status)}
-                  </span>
+                    <option value="pending">{t("status.pending")}</option>
+                    <option value="confirmed">{t("status.confirmed")}</option>
+                    <option value="completed">{t("status.completed")}</option>
+                    <option value="cancelled">{t("status.cancelled")}</option>
+                  </select>
                 </div>
                 <div className="space-y-1 text-sm text-neutral-600">
                   <p className="text-xs font-medium text-neutral-400">
@@ -216,11 +239,19 @@ export default function BookingsList() {
                       {booking.passengers}
                     </td>
                     <td className="px-4 py-3">
-                      <span
-                        className={`inline-block rounded-full border px-2.5 py-0.5 text-xs font-medium ${statusStyles[booking.status]}`}
+                      <select
+                        value={booking.status}
+                        onChange={(e) =>
+                          handleStatusChange(booking.id, e.target.value as BookingStatus)
+                        }
+                        disabled={updating === booking.id}
+                        className={`inline-block rounded-full border px-2.5 py-0.5 text-xs font-medium ${statusStyles[booking.status]} cursor-pointer`}
                       >
-                        {t("status." + booking.status)}
-                      </span>
+                        <option value="pending">{t("status.pending")}</option>
+                        <option value="confirmed">{t("status.confirmed")}</option>
+                        <option value="completed">{t("status.completed")}</option>
+                        <option value="cancelled">{t("status.cancelled")}</option>
+                      </select>
                     </td>
                   </tr>
                 ))}
