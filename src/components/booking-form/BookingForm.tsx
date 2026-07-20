@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
@@ -45,6 +45,13 @@ export default function BookingForm() {
   const tPlaceholders = useTranslations("booking.form.placeholders");
   const [formState, setFormState] = useState<FormState>("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  const errorTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (errorTimerRef.current) clearTimeout(errorTimerRef.current);
+    };
+  }, []);
 
   const {
     register,
@@ -52,6 +59,7 @@ export default function BookingForm() {
     reset,
     formState: { errors },
   } = useForm<BookingFormValues>({
+    mode: "onTouched",
     resolver: zodResolver(bookingSchema),
     defaultValues: {
       firstName: "",
@@ -79,7 +87,7 @@ export default function BookingForm() {
       reset();
     } catch (err) {
       setErrorMessage(err instanceof Error ? err.message : "Unknown error");
-      setFormState("error");
+      errorTimerRef.current = setTimeout(() => setFormState("error"), 5000);
     }
   }
 
@@ -89,9 +97,9 @@ export default function BookingForm() {
   }
 
   const fieldClass =
-    "w-full rounded-lg border border-neutral-300 bg-white px-4 py-3 text-neutral-900 placeholder-neutral-400 transition-colors focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-200";
+    "w-full rounded-lg border border-neutral-300 bg-white px-4 py-3 text-neutral-900 placeholder-neutral-400 transition-colors focus:border-accent-500 focus:outline-none focus:ring-2 focus:ring-accent-200";
   const labelClass = "block text-sm font-medium text-neutral-700 mb-1";
-  const errorBorderClass = "border-accent-500 focus:border-accent-500 focus:ring-accent-200";
+  const errorBorderClass = "border-primary-400 focus:border-primary-400 focus:ring-primary-200";
   const isSubmitting = formState === "submitting";
 
   if (formState === "success") {
@@ -131,12 +139,6 @@ export default function BookingForm() {
       noValidate
       className="space-y-6 rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm sm:p-8"
     >
-      {formState === "error" && (
-        <div className="animate-fade-in-up rounded-lg border border-accent-200 bg-accent-50 p-4 text-accent-800" role="alert">
-          <p className="font-medium">{t("states.error")}</p>
-          <p className="text-sm">{errorMessage || t("states.errorMessage")}</p>
-        </div>
-      )}
 
       <fieldset className="space-y-6" disabled={isSubmitting}>
         <div>
@@ -473,6 +475,15 @@ export default function BookingForm() {
           </div>
         </div>
       </fieldset>
+
+      {formState === "error" && (
+        <div className="animate-fade-in-up rounded-xl border border-primary-200 bg-primary-50 py-8 text-center" role="alert">
+          <p className="text-lg font-medium text-primary-800">
+            {t("states.error")}
+          </p>
+          <p className="mt-1 text-sm text-primary-600">{errorMessage || t("states.errorMessage")}</p>
+        </div>
+      )}
 
       <button
         type="submit"
