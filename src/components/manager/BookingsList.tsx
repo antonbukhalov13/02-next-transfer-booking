@@ -8,9 +8,9 @@ import type { BookingStatus } from "@/types/mock-bookings";
 
 const statusStyles: Record<BookingStatus, string> = {
   pending: "bg-accent-100 text-accent-800 border-accent-200",
-  confirmed: "bg-primary-100 text-primary-800 border-primary-200",
-  completed: "bg-primary-50 text-primary-600 border-primary-100",
-  cancelled: "bg-neutral-100 text-neutral-600 border-neutral-200",
+  confirmed: "bg-emerald-100 text-emerald-800 border-emerald-200",
+  completed: "bg-emerald-50 text-emerald-600 border-emerald-100",
+  cancelled: "bg-primary-100 text-primary-800 border-primary-200",
 };
 
 export default function BookingsList() {
@@ -72,14 +72,14 @@ export default function BookingsList() {
             placeholder={t("filters.searchPlaceholder")}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full rounded-lg border border-neutral-300 bg-neutral-50 px-4 py-2.5 text-sm text-neutral-900 placeholder-neutral-400 transition-colors focus:border-primary-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary-200 sm:max-w-sm"
+            className="w-full rounded-lg border border-neutral-300 bg-neutral-50 px-4 py-2.5 text-sm text-neutral-900 placeholder-neutral-400 transition-colors focus:border-accent-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-accent-200 sm:max-w-sm"
           />
           <select
             value={statusFilter}
             onChange={(e) =>
               setStatusFilter(e.target.value as BookingStatus | "all")
             }
-            className="rounded-lg border border-neutral-300 bg-neutral-50 px-4 py-2.5 text-sm text-neutral-900 transition-colors focus:border-primary-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary-200"
+            className="rounded-lg border border-neutral-300 bg-neutral-50 px-4 py-2.5 text-sm text-neutral-900 transition-colors focus:border-accent-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-accent-200"
           >
             <option value="all">{t("filters.allStatuses")}</option>
             <option value="pending">{t("status.pending")}</option>
@@ -96,11 +96,11 @@ export default function BookingsList() {
           <p className="mt-3 text-sm text-neutral-500">{t("loading")}</p>
         </div>
       ) : error ? (
-        <div className="rounded-xl border border-accent-200 bg-accent-50 py-8 text-center">
-          <p className="text-lg font-medium text-accent-800">
+        <div className="rounded-xl border border-primary-200 bg-primary-50 py-8 text-center">
+          <p className="text-lg font-medium text-primary-800">
             {t("error")}
           </p>
-          <p className="mt-1 text-sm text-accent-600">{error}</p>
+          <p className="mt-1 text-sm text-primary-600">{error}</p>
         </div>
       ) : filtered.length === 0 ? (
         <div className="rounded-xl border border-neutral-200 bg-white py-12 text-center">
