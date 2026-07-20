@@ -45,7 +45,11 @@ src/
     mock-data.ts               # моковые данные бронирований
     services-data.ts           # данные карточек услуг
 docs/
+  AGENTS.md                    # правила для агента
+  AI_USAGE.md                  # журнал AI-запросов
   CLIENT_CONTENT.md            # исходный клиентский текст (единственный источник контента)
+  PROMPT_PLAN.md               # пошаговый план разработки
+  TASK.md                      # краткая сводка задачи
   TASK_SPEC.md                 # полное ТЗ и критерии приёмки
 proxy.ts                       # next-intl middleware (переключение локалей)
 ```
