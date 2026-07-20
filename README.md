@@ -44,6 +44,7 @@ src/
     validation.ts               # zod-схема валидации формы
     mock-data.ts                # моковые данные бронирований
     services-data.ts            # данные карточек услуг
+    proxy.ts                    # next-intl middleware (переключение локалей)
 docs/
   AGENTS.md                     # правила для агента
   AI_USAGE.md                   # журнал AI-запросов
@@ -51,7 +52,12 @@ docs/
   PROMPT_PLAN.md                # пошаговый план разработки
   TASK.md                       # краткая сводка задачи
   02-transfer-task-spec.md      # полное ТЗ и критерии приёмки
-proxy.ts                        # next-intl middleware (переключение локалей)
+next.config.ts                  # конфигурация Next.js
+tsconfig.json                   # TypeScript
+package.json                    # зависимости и скрипты
+package-lock.json               # lock-файл зависимостей
+postcss.config.mjs              # PostCSS (Tailwind)
+eslint.config.mjs               # ESLint
 ```
 
 ## Основные разделы сайта
