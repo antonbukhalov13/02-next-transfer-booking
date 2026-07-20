@@ -2,6 +2,18 @@ import { BookingFormValues } from "@/lib/validation";
 import { BookingStatus } from "@/types/mock-bookings";
 
 const API_BASE = "http://localhost:3001/api";
+const TIMEOUT = 5000;
+
+async function fetchWithTimeout(url: string, options?: RequestInit): Promise<Response> {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), TIMEOUT);
+  try {
+    const response = await fetch(url, { ...options, signal: controller.signal });
+    return response;
+  } finally {
+    clearTimeout(timer);
+  }
+}
 
 export interface Booking {
   id: string;
@@ -37,7 +49,7 @@ export async function createBooking(
   data: BookingFormValues
 ): Promise<Booking> {
   const { pickupAddress, ...rest } = data;
-  const response = await fetch(`${API_BASE}/bookings`, {
+  const response = await fetchWithTimeout(`${API_BASE}/bookings`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ ...rest, pickup: pickupAddress }),
@@ -46,7 +58,7 @@ export async function createBooking(
 }
 
 export async function getBookings(): Promise<Booking[]> {
-  const response = await fetch(`${API_BASE}/bookings`);
+  const response = await fetchWithTimeout(`${API_BASE}/bookings`);
   return handleResponse<Booking[]>(response);
 }
 
@@ -54,7 +66,7 @@ export async function updateBookingStatus(
   id: string,
   status: BookingStatus
 ): Promise<Booking> {
-  const response = await fetch(`${API_BASE}/bookings/${id}`, {
+  const response = await fetchWithTimeout(`${API_BASE}/bookings/${id}`, {
     method: "PATCH",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ status }),
