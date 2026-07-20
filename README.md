@@ -55,7 +55,6 @@ docs/
 next.config.ts                  # конфигурация Next.js
 tsconfig.json                   # TypeScript
 package.json                    # зависимости и скрипты
-package-lock.json               # lock-файл зависимостей
 postcss.config.mjs              # PostCSS (Tailwind)
 eslint.config.mjs               # ESLint
 ```
